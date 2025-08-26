@@ -1,9 +1,135 @@
 {
     "usuarios": [
-
+        {
+            "id": "efwd01",
+            "nombre": "Adrian Campos",
+            "contrasena": "efwd01"
+        },
+        {
+            "id": "efwd02",
+            "nombre": "Alejandro Machado",
+            "contrasena": "efwd02"
+        },
+        {
+            "id": "efwd03",
+            "nombre": "Alfredo Torres",
+            "contrasena": "efwd03"
+        },
+        {
+            "id": "efwd04",
+            "nombre": "Molishka Corea",
+            "contrasena": "efwd04"
+        },
+        {
+            "id": "efwd05",
+            "nombre": "Ariana Solis",
+            "contrasena": "efwd05"
+        },
+        {
+            "id": "efwd06",
+            "nombre": "Christopher Garrido",
+            "contrasena": "efwd06"
+        },
+        {
+            "id": "efwd07",
+            "nombre": "Christopher Delgado",
+            "contrasena": "efwd07"
+        },
+        {
+            "id": "efwd08",
+            "nombre": "David Solis",
+            "contrasena": "efwd08"
+        },
+        {
+            "id": "efwd09",
+            "nombre": "Fiorella Chaves",
+            "contrasena": "efwd09"
+        },
+        {
+            "id": "efwd10",
+            "nombre": "Geovanny Soto",
+            "contrasena": "efwd10"
+        },
+        {
+            "id": "efwd11",
+            "nombre": "Guido Aguilar",
+            "contrasena": "efwd11"
+        },
+        {
+            "id": "efwd12",
+            "nombre": "Hilary Calderon",
+            "contrasena": "efwd12"
+        },
+        {
+            "id": "efwd13",
+            "nombre": "Ismael Marin",
+            "contrasena": "efwd13"
+        },
+        {
+            "id": "efwd14",
+            "nombre": "Jeaustin Calderon",
+            "contrasena": "efwd14"
+        },
+        {
+            "id": "efwd15",
+            "nombre": "Joseph Hernandez",
+            "contrasena": "efwd15"
+        },
+        {
+            "id": "efwd16",
+            "nombre": "Josue Munguia",
+            "contrasena": "efwd16"
+        },
+        {
+            "id": "efwd17",
+            "nombre": "Thais Soto",
+            "contrasena": "efwd17"
+        },
+        {
+            "id": "efwd18",
+            "nombre": "Kay Rainold",
+            "contrasena": "efwd18"
+        },
+        {
+            "id": "efwd19",
+            "nombre": "Luis Zeledon",
+            "contrasena": "efwd19"
+        },
+        {
+            "id": "efwd20",
+            "nombre": "Manuel Portuguez",
+            "contrasena": "efwd20"
+        },
+        {
+            "id": "efwd21",
+            "nombre": "Mariana Solis",
+            "contrasena": "efwd21"
+        },
+        {
+            "id": "efwd22",
+            "nombre": "Noelia Muñoz",
+            "contrasena": "efwd22"
+        },
+        {
+            "id": "efwd23",
+            "nombre": "Tamara Santamaria",
+            "contrasena": "efwd23"
+        },
+        {
+            "id": "efwd24",
+            "nombre": "Taylkor Miranda",
+            "contrasena": "efwd24"
+        },
+        {
+            "id": "pfwd01",
+            "nombre": "Jean Barberena",
+            "contrasena": "pfwd01"
+        },
+        {
+            "id": "pfwd02",
+            "nombre": "Barry Vega",
+            "contrasena": "pfwd02"
+        }
     ],
-
-    "consultas": [
-
-    ]
+    "consultas": []
 }
