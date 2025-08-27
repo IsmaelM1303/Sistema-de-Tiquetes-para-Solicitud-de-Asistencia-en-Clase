@@ -30,5 +30,10 @@ async function validarLogin(e) {
 
     } else {
         console.warn("Usuario o contraseña incorrectos")
+        const mensaje = document.getElementById("mensaje")
+
+        const contenidoMensaje = document.createElement("p")
+        contenidoMensaje.textContent = "Usuario o contraseña incorrectos"
+        mensaje.appendChild(contenidoMensaje)
     }
 }
