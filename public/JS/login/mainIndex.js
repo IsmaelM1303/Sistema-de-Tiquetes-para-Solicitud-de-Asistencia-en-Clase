@@ -7,7 +7,7 @@ document.getElementById("btnInicioSesion").addEventListener("click", validarLogi
 //Funcion de inicio de sesión
 async function validarLogin(e) {
     e.preventDefault()
-    
+
     //Recuperación de datos
     const idInput = document.getElementById("idLogin").value.trim().toLowerCase()
     const passwordInput = document.getElementById("passwordLogin").value.trim()
@@ -25,7 +25,12 @@ async function validarLogin(e) {
     )
 
     if (usuarioValido) {
-        localStorage.setItem("Usuario", usuarioValido.nombre);
+        const datosUsuario = {
+            nombre: usuarioValido.nombre,
+            sede: usuarioValido.sede
+        }
+
+        localStorage.setItem("Usuario", JSON.stringify(datosUsuario))
         window.location.href = "../pages/listaConsultas.html";
 
     } else {
