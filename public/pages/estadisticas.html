@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadísticas</title>
 </head>
+
 <body>
     <header>
         <h1>Estadísticas</h1>
     </header>
     <main>
         <button id="back">Volver a Lista de Tiquetes</button>
-        
+
+        <div>
+            <label>Filtro por categoría</label>
+            <select id="categoriaConsulta" name="tecnologia">
+                <option value="" selected>Seleccionar categoría</option>
+                <option value="javascript">JavaScript</option>
+                <option value="css">CSS</option>
+                <option value="html">HTML</option>
+                <option value="nodejs">Node.js</option>
+                <option value="jsonserver">json-server</option>
+                <option value="react">React</option>
+                <option value="python">Python</option>
+                <option value="github">GitHub</option>
+                <option value="otro">Otro</option>
+            </select>
+            <label></label>
+        </div>
     </main>
 
     <script type="module" src="../JS/estadisticas/mainEstadisticas.js"></script>
 </body>
+
 </html>

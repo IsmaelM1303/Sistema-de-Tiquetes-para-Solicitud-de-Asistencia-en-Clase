@@ -20,22 +20,3 @@ async function obtenerConsultas() {
     }
 }
 
-//Esto vuelve a crear la lista
-async function actualizarLista() {
-    try {
-        contenedorConsultas.innerHTML = ""
-        const consultas = await obtenerConsultas()
-        contenedorConsultas.innerHTML = ""
-
-        consultas.forEach(consulta => {
-            if (usuario.id.includes("e")) {
-                crearMostrarEstudiante(consulta)
-            }
-            else if (usuario.id.includes("p")){
-                crearMostrarProfesor(consulta)
-            }
-        })
-    } catch (error) {
-        console.error("Ocurrió un error al mostrar los marcadores:", error)
-    }
-}
