@@ -15,18 +15,95 @@ const contenedorConsultas = document.getElementById("contenedorConsultas")
 
 //Datos globales con triggers
 
-
+//Esto es la renderización condicional con js puro
 if (usuario.id.includes("p")) {
     console.log("profe");
-    document.getElementById("btnCerrarSesion").addEventListener("click", cerrarSesion)
-    document.getElementById("btnestadisticas").addEventListener("click", irAEstadisticas)
+    const btnEstadistica = document.createElement("button")
+    btnEstadistica.textContent = "Estadísticas"
+    btnEstadistica.id = "btnEstadistica"
+    const botonEstadistica = document.getElementById("botonEstadistica")
+    botonEstadistica.appendChild(btnEstadistica)
+
+    btnCerrarSesion.addEventListener("click", cerrarSesion)
+    document.getElementById("btnEstadistica").addEventListener("click", irAEstadisticas)
     document.addEventListener("DOMContentLoaded", () => { actualizarLista() })
 
 
 } else if (usuario.id.includes("e")) {
     console.log("estudiante");
+    const contenedorAgregar = document.getElementById("contenedorAgregar");
+
+    // Crear título
+    const titulo = document.createElement("h3");
+    titulo.textContent = "Nuevo tiquete de consulta";
+
+    // Crear etiqueta de categoría
+    const labelCategoria = document.createElement("label");
+    labelCategoria.textContent = "Selecciona una categoría para la consulta:";
+
+    // Crear select de categorías
+    const selectCategoria = document.createElement("select");
+    selectCategoria.id = "categoriaConsulta";
+    selectCategoria.name = "tecnologia";
+
+    // Opciones del select
+    const categorias = [
+        { value: "", text: "Seleccionar categoría", disabled: true, selected: true },
+        { value: "javascript", text: "JavaScript" },
+        { value: "css", text: "CSS" },
+        { value: "html", text: "HTML" },
+        { value: "nodejs", text: "Node.js" },
+        { value: "jsonserver", text: "json-server" },
+        { value: "react", text: "React" },
+        { value: "python", text: "Python" },
+        { value: "github", text: "GitHub" },
+        { value: "otro", text: "Otro" }
+    ];
+
+    categorias.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat.value;
+        option.textContent = cat.text;
+        if (cat.disabled) option.disabled = true;
+        if (cat.selected) option.selected = true;
+        selectCategoria.appendChild(option);
+    });
+
+    // Crear contenedor de categoría
+    const divCategoria = document.createElement("div");
+    divCategoria.appendChild(titulo);
+    divCategoria.appendChild(labelCategoria);
+    divCategoria.appendChild(selectCategoria);
+
+    // Crear etiqueta de descripción
+    const labelDescripcion = document.createElement("label");
+    labelDescripcion.textContent = "Describa el motivo de su consulta";
+
+    // Crear textarea
+    const textarea = document.createElement("textarea");
+    textarea.id = "descripcionConsulta";
+
+    // Crear contenedor de descripción
+    const divDescripcion = document.createElement("div");
+    divDescripcion.appendChild(labelDescripcion);
+    divDescripcion.appendChild(textarea);
+
+    // Crear botón
+    const boton = document.createElement("button");
+    boton.id = "btnCrearConsulta";
+    boton.textContent = "Crear consulta";
+
+    // Crear párrafo de confirmación
+    const mensaje = document.createElement("p");
+    mensaje.id = "mensajeConfirmacion";
+
+    // Agregar todo al contenedor principal
+    contenedorAgregar.appendChild(divCategoria);
+    contenedorAgregar.appendChild(divDescripcion);
+    contenedorAgregar.appendChild(boton);
+    contenedorAgregar.appendChild(mensaje);
+
     document.getElementById("btnCerrarSesion").addEventListener("click", cerrarSesion)
-    document.getElementById("btnestadisticas").addEventListener("click", irAEstadisticas)
     document.getElementById("btnCrearConsulta").addEventListener("click", nuevaConsulta)
     document.addEventListener("DOMContentLoaded", () => { actualizarLista() })
 }
@@ -55,7 +132,7 @@ async function actualizarLista() {
             if (usuario.id.includes("e")) {
                 crearMostrarEstudiante(consulta)
             }
-            else if (usuario.id.includes("p")){
+            else if (usuario.id.includes("p")) {
                 crearMostrarProfesor(consulta)
             }
         })
