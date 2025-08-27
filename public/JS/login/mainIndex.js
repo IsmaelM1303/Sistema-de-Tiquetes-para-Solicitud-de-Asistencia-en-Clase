@@ -1,5 +1,5 @@
 //Importaciones
-import { getData } from "../../services/peticioneslogin.js"
+import { getData } from "../../services/CRUD.js"
 
 //Datos globales
 document.getElementById("btnInicioSesion").addEventListener("click", validarLogin)

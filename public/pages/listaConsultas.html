@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultas</title>
+    <link rel="stylesheet" href="../CSS/consultas.css">
 </head>
+
 <body>
     <header>
         <h1>Tiquetes para Solicitud de Asistencia en Clase</h1>
 
         <h2 id="nombreUsuario"></h2>
     </header>
-    <main>
-        <button id="estadisticas">Estadísticas</button>
-        <div id="contenedorTiquets"></div>
-        <button id="btnCerrarSesion">Cerrar Sesión</button>
-    </main>
+    <div id="contenedor">
+        <aside>
+            <button id="btnestadisticas">Estadísticas</button>
+            <div id="contenedorTiquets"></div>
+            <button id="btnCerrarSesion">Cerrar Sesión</button>
+
+            <div id="contenedorAgregar">
+                <div>
+                    <h3>Nuevo tiquete de consulta</h3>
+                    <label>Selecciona una categoría para la consulta:</label>
+                    <select id="categoriaConsulta" name="tecnologia">
+                        <option value="" disabled selected>Seleccionar categoría</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="css">CSS</option>
+                        <option value="html">HTML</option>
+                        <option value="nodejs">Node.js</option>
+                        <option value="jsonserver">json-server</option>
+                        <option value="react">React</option>
+                        <option value="python">Python</option>
+                        <option value="github">GitHub</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Describa el motivo de su consulta</label>
+                    <textarea id="descripcionConsulta"></textarea>
+                </div>
+                <button id="btnCrearConsulta">Crear consulta</button>
+                <p id="mensajeConfirmacion"></p>
+
+            </div>
+        </aside>
+        <main>
+            <h2>Lista de consultas</h2>
+            <div id="contenedorConsultas"></div>
+        </main>
+    </div>
     <script type="module" src="../JS/consultas/mainConsultas.js"></script>
 </body>
+
 </html>
