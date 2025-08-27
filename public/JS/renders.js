@@ -1,3 +1,6 @@
+import { updateData, createData, deleteData} from "../services/CRUD.js"
+import { actualizarLista, } from "./consultas/mainConsultas.js"
+
 //Esto crea los elementos a mostrar en la lista de consultas
 function crearMostrarEstudiante(consulta) {
     const contenedorConsulta = document.createElement("div")
@@ -136,6 +139,23 @@ function crearMostrarProfesor(consulta) {
         actualizarLista()
     })
 
+    //Botón: Dar por resuelta
+    const botonRevisar = document.createElement("button")
+    botonRevisar.textContent = "Dar por resuelta"
+    botonRevisar.addEventListener("click", () => {
+        const datosActualizados = {
+            id: consulta.id,
+            nombre: inputNombre.value,
+            hora: consulta.hora,
+            categoria: selectCategoria.value,
+            descripcion: textareaDescripcion.value,
+            sede: inputSede.value
+        }
+        createData("consultasResueltas", datosActualizados)
+        deleteData("consultas", consulta.id)
+        actualizarLista()
+    })
+
     // Ensamblar todo
     contenedor.append(
         grupoNombre,
@@ -143,7 +163,8 @@ function crearMostrarProfesor(consulta) {
         grupoCategoria,
         grupoDescripcion,
         grupoSede,
-        botonGuardar
+        botonGuardar,
+        botonRevisar
     )
 
     contenedorConsultas.appendChild(contenedor)

@@ -38,7 +38,7 @@ async function createData(endpoint, nuevoUsuario) {
 //Esta es la función que elimina los usuarios
 async function deleteData(endpoint, id) {
     try {
-        const url = `http://localhost:3001/${endpoint}` + id
+        const url = `http://localhost:3001/${endpoint}/` + id
         await fetch(url, {
             method: 'DELETE',
             headers: {

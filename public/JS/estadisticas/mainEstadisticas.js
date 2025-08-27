@@ -8,8 +8,6 @@ function irALista(){
     window.location.href = "../pages/listaConsultas.html";
 }
 
-
-
 async function obtenerConsultas() {
     try {
         const consultas = await getData("consultas")

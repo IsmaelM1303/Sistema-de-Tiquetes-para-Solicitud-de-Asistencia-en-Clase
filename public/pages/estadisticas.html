@@ -14,21 +14,39 @@
     <main>
         <button id="back">Volver a Lista de Tiquetes</button>
 
-        <div>
-            <label>Filtro por categoría</label>
-            <select id="categoriaConsulta" name="tecnologia">
-                <option value="" selected>Seleccionar categoría</option>
-                <option value="javascript">JavaScript</option>
-                <option value="css">CSS</option>
-                <option value="html">HTML</option>
-                <option value="nodejs">Node.js</option>
-                <option value="jsonserver">json-server</option>
-                <option value="react">React</option>
-                <option value="python">Python</option>
-                <option value="github">GitHub</option>
-                <option value="otro">Otro</option>
-            </select>
-            <label></label>
+        <div id="contenedorFiltros">
+            <div>
+                <label>Filtro por Id</label>
+                <input type="text" placeholder="filtroId">
+            </div>
+            <div>
+                <label>Filtro por categoría</label>
+                <select id="categoriaConsulta" name="tecnologia">
+                    <option value="" selected>Seleccionar categoría</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="css">CSS</option>
+                    <option value="html">HTML</option>
+                    <option value="nodejs">Node.js</option>
+                    <option value="jsonserver">json-server</option>
+                    <option value="react">React</option>
+                    <option value="python">Python</option>
+                    <option value="github">GitHub</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            <div>
+                <label>Filtro por sede</label>
+                <select id="filtroSede">
+                    <option value="" selected>Seleccionar sede</option>
+                    <option value="La Capri">La Capri</option>
+                    <option value="Puntarenas">Puntarenas</option>
+                </select>
+            </div>
+            <div>
+                <label>Filtro por consultas revisadas</label>
+                <input type="checkbox" id="filtroRevisadas">
+            </div>
+            <button id="aplicarFlitros">Aplicar filtros</button>
         </div>
     </main>
 

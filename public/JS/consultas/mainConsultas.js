@@ -120,9 +120,9 @@ async function obtenerConsultas() {
 }
 
 //Esto vuelve a crear la lista
-async function actualizarLista() {
-    try {
+export async function actualizarLista() {
         contenedorConsultas.innerHTML = ""
+    try {
         const consultas = await obtenerConsultas()
         contenedorConsultas.innerHTML = ""
 
