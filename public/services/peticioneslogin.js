@@ -15,3 +15,5 @@ async function getUser() {
         console.log("Ocurrió un error al obtener los usuarios" + error)
     }
 }
+
+export {getUser}
