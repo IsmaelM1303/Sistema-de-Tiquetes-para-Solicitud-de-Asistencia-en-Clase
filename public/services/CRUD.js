@@ -54,7 +54,7 @@ async function deleteData(endpoint, id) {
 //Esta es la función que actualiza los usuarios
 async function updateData(endpoint, id, datosActualizados) {
     try {
-        const url = `http://localhost:3001/${endpoint}` + id
+        const url = `http://localhost:3001/${endpoint}/` + id
         await fetch(url, {
             method: 'PUT',
             headers: {

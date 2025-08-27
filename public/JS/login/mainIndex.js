@@ -26,6 +26,7 @@ async function validarLogin(e) {
 
     if (usuarioValido) {
         const datosUsuario = {
+            id: usuarioValido.id,
             nombre: usuarioValido.nombre,
             sede: usuarioValido.sede
         }
