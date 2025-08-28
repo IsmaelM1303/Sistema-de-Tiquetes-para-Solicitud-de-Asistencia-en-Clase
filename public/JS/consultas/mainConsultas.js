@@ -121,17 +121,19 @@ async function obtenerConsultas() {
 
 //Esto vuelve a crear la lista
 export async function actualizarLista() {
-        contenedorConsultas.innerHTML = ""
+    contenedorConsultas.innerHTML = ""
     try {
         const consultas = await obtenerConsultas()
         contenedorConsultas.innerHTML = ""
 
         consultas.forEach(consulta => {
-            if (usuario.id.includes("e")) {
-                crearMostrarEstudiante(consulta)
-            }
-            else if (usuario.id.includes("p")) {
-                crearMostrarProfesor(consulta)
+            if (consulta.estado === "Sin resolver") {
+                if (usuario.id.includes("e")) {
+                    crearMostrarEstudiante(consulta)
+                }
+                else if (usuario.id.includes("p")) {
+                    crearMostrarProfesor(consulta)
+                }
             }
         })
     } catch (error) {
@@ -160,7 +162,6 @@ const fechaFormateada = `${dia}/${mes}/${año}`
 
     //Hago el objeto
     const nuevaConsulta = {
-        id: usuario.id,
         nombre: usuario.nombre,
         hora: horaFormateada,
         fecha: fechaFormateada,

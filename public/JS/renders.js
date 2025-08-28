@@ -3,37 +3,42 @@ import { actualizarLista, } from "./consultas/mainConsultas.js"
 
 //Esto crea los elementos a mostrar en la lista de consultas
 function crearMostrarEstudiante(consulta) {
-    const contenedorConsulta = document.createElement("div")
+    const usuario = JSON.parse(localStorage.getItem("Usuario"));
+    if (consulta.nombre !== usuario.nombre) {
+        return; // No imprime si no coincide
+    }
+
+    const contenedorConsulta = document.createElement("div");
 
     // Aquí creo los elementos
-    const nombre = document.createElement("p")
-    nombre.textContent = consulta.nombre
-    nombre.classList.add("dato")
+    const nombre = document.createElement("p");
+    nombre.textContent = consulta.nombre;
+    nombre.classList.add("dato");
 
-    const hora = document.createElement("p")
-    hora.textContent = consulta.hora
-    hora.classList.add("dato")
+    const hora = document.createElement("p");
+    hora.textContent = consulta.hora;
+    hora.classList.add("dato");
 
-    const categoria = document.createElement("p")
-    categoria.textContent = consulta.categoria
-    categoria.classList.add("dato")
+    const categoria = document.createElement("p");
+    categoria.textContent = consulta.categoria;
+    categoria.classList.add("dato");
 
-    const descripcion = document.createElement("p")
-    descripcion.textContent = consulta.descripcion
-    descripcion.classList.add("dato")
+    const descripcion = document.createElement("p");
+    descripcion.textContent = consulta.descripcion;
+    descripcion.classList.add("dato");
 
-    const locacion = document.createElement("p")
-    locacion.textContent = consulta.sede
-    locacion.classList.add("dato")
+    const locacion = document.createElement("p");
+    locacion.textContent = consulta.sede;
+    locacion.classList.add("dato");
 
     // Esto es para añadirlos al DOM
-    contenedorConsulta.appendChild(nombre)
-    contenedorConsulta.appendChild(hora)
-    contenedorConsulta.appendChild(categoria)
-    contenedorConsulta.appendChild(descripcion)
-    contenedorConsulta.appendChild(locacion)
+    contenedorConsulta.appendChild(nombre);
+    contenedorConsulta.appendChild(hora);
+    contenedorConsulta.appendChild(categoria);
+    contenedorConsulta.appendChild(descripcion);
+    contenedorConsulta.appendChild(locacion);
 
-    contenedorConsultas.appendChild(contenedorConsulta)
+    contenedorConsultas.appendChild(contenedorConsulta);
 }
 
 function crearMostrarProfesor(consulta) {

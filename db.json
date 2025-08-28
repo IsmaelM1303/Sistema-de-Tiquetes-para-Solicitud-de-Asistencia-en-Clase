@@ -1,135 +1,301 @@
 {
-    "usuarios": [
-        {
-            "id": "efwd01",
-            "nombre": "Adrian Campos",
-            "contrasena": "efwd01"
-        },
-        {
-            "id": "efwd02",
-            "nombre": "Alejandro Machado",
-            "contrasena": "efwd02"
-        },
-        {
-            "id": "efwd03",
-            "nombre": "Alfredo Torres",
-            "contrasena": "efwd03"
-        },
-        {
-            "id": "efwd04",
-            "nombre": "Molishka Corea",
-            "contrasena": "efwd04"
-        },
-        {
-            "id": "efwd05",
-            "nombre": "Ariana Solis",
-            "contrasena": "efwd05"
-        },
-        {
-            "id": "efwd06",
-            "nombre": "Christopher Garrido",
-            "contrasena": "efwd06"
-        },
-        {
-            "id": "efwd07",
-            "nombre": "Christopher Delgado",
-            "contrasena": "efwd07"
-        },
-        {
-            "id": "efwd08",
-            "nombre": "David Solis",
-            "contrasena": "efwd08"
-        },
-        {
-            "id": "efwd09",
-            "nombre": "Fiorella Chaves",
-            "contrasena": "efwd09"
-        },
-        {
-            "id": "efwd10",
-            "nombre": "Geovanny Soto",
-            "contrasena": "efwd10"
-        },
-        {
-            "id": "efwd11",
-            "nombre": "Guido Aguilar",
-            "contrasena": "efwd11"
-        },
-        {
-            "id": "efwd12",
-            "nombre": "Hilary Calderon",
-            "contrasena": "efwd12"
-        },
-        {
-            "id": "efwd13",
-            "nombre": "Ismael Marin",
-            "contrasena": "efwd13"
-        },
-        {
-            "id": "efwd14",
-            "nombre": "Jeaustin Calderon",
-            "contrasena": "efwd14"
-        },
-        {
-            "id": "efwd15",
-            "nombre": "Joseph Hernandez",
-            "contrasena": "efwd15"
-        },
-        {
-            "id": "efwd16",
-            "nombre": "Josue Munguia",
-            "contrasena": "efwd16"
-        },
-        {
-            "id": "efwd17",
-            "nombre": "Thais Soto",
-            "contrasena": "efwd17"
-        },
-        {
-            "id": "efwd18",
-            "nombre": "Kay Rainold",
-            "contrasena": "efwd18"
-        },
-        {
-            "id": "efwd19",
-            "nombre": "Luis Zeledon",
-            "contrasena": "efwd19"
-        },
-        {
-            "id": "efwd20",
-            "nombre": "Manuel Portuguez",
-            "contrasena": "efwd20"
-        },
-        {
-            "id": "efwd21",
-            "nombre": "Mariana Solis",
-            "contrasena": "efwd21"
-        },
-        {
-            "id": "efwd22",
-            "nombre": "Noelia Muñoz",
-            "contrasena": "efwd22"
-        },
-        {
-            "id": "efwd23",
-            "nombre": "Tamara Santamaria",
-            "contrasena": "efwd23"
-        },
-        {
-            "id": "efwd24",
-            "nombre": "Taylkor Miranda",
-            "contrasena": "efwd24"
-        },
-        {
-            "id": "pfwd01",
-            "nombre": "Jean Barberena",
-            "contrasena": "pfwd01"
-        },
-        {
-            "id": "pfwd02",
-            "nombre": "Barry Vega",
-            "contrasena": "pfwd02"
-        }
-    ],
-    "consultas": []
+  "usuarios": [
+    {
+      "id": "0",
+      "contadorEstudiantes": "27",
+      "contadorProfesores": "2"
+    },
+    {
+      "id": "efwd01",
+      "nombre": "Adrian Campos",
+      "contrasena": "efwd01",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd02",
+      "nombre": "Alejandro Machado",
+      "contrasena": "efwd02",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd03",
+      "nombre": "Alfredo Torres",
+      "contrasena": "efwd03",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd04",
+      "nombre": "Molishka Corea",
+      "contrasena": "efwd04",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd05",
+      "nombre": "Ariana Solis",
+      "contrasena": "efwd05",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd06",
+      "nombre": "Christopher Garrido",
+      "contrasena": "efwd06",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd07",
+      "nombre": "Christopher Delgado",
+      "contrasena": "efwd07",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd08",
+      "nombre": "David Solis",
+      "contrasena": "efwd08",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd09",
+      "nombre": "Fiorella Chaves",
+      "contrasena": "efwd09",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd10",
+      "nombre": "Geovanny Soto",
+      "contrasena": "efwd10",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd11",
+      "nombre": "Guido Aguilar",
+      "contrasena": "efwd11",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd12",
+      "nombre": "Hilary Calderon",
+      "contrasena": "efwd12",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd13",
+      "nombre": "Ismael Marin",
+      "contrasena": "efwd13",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd14",
+      "nombre": "Jeaustin Calderon",
+      "contrasena": "efwd14",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd15",
+      "nombre": "Joseph Hernandez",
+      "contrasena": "efwd15",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd16",
+      "nombre": "Josue Munguia",
+      "contrasena": "efwd16",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd17",
+      "nombre": "Thais Soto",
+      "contrasena": "efwd17",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd18",
+      "nombre": "Kay Rainold",
+      "contrasena": "efwd18",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd19",
+      "nombre": "Luis Zeledon",
+      "contrasena": "efwd19",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd20",
+      "nombre": "Manuel Portuguez",
+      "contrasena": "efwd20",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd21",
+      "nombre": "Mariana Solis",
+      "contrasena": "efwd21",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd22",
+      "nombre": "Noelia Muñoz",
+      "contrasena": "efwd22",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd23",
+      "nombre": "Tamara Santamaria",
+      "contrasena": "efwd23",
+      "sede": "La Capri"
+    },
+    {
+      "id": "efwd24",
+      "nombre": "Taylkor Miranda",
+      "contrasena": "efwd24",
+      "sede": "La Capri"
+    },
+    {
+      "id": "pfwd01",
+      "nombre": "Jean Barberena",
+      "contrasena": "pfwd01",
+      "sede": "Forward"
+    },
+    {
+      "id": "pfwd02",
+      "nombre": "Barry Vega",
+      "contrasena": "pfwd02",
+      "sede": "Forward"
+    },
+    {
+      "id": "efwd25",
+      "nombre": "Anthony Quiang",
+      "contrasena": "12345678",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd26",
+      "nombre": "Brandon Vargas",
+      "contrasena": "123456789",
+      "sede": "Puntarenas"
+    }
+  ],
+  "consultas": [
+    {
+      "id": "0002",
+      "nombre": "Joseph Hernandez",
+      "hora": "08:55:33",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "No me conecta con el CRUD",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "0004",
+      "nombre": "Ismael Marin",
+      "hora": "10:01:46",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "No está importando las funciones",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "0005",
+      "nombre": "Ismael Marin",
+      "hora": "10:03:11",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "Prueba 345",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "0006",
+      "nombre": "Geovanny Soto",
+      "hora": "12:12:33",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "No le sirve un botón de inicio de sesión",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "0007",
+      "nombre": "Alejandro Machado",
+      "hora": "12:20:06",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "Me falta js en el trabajo",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "14b3",
+      "nombre": "Ismael Marin",
+      "hora": "13:04:33",
+      "fecha": "28/08/2025",
+      "categoria": "jsonserver",
+      "descripcion": "no se activa",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "6e61",
+      "nombre": "Ismael Marin",
+      "hora": "14:05:32",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "Problema js",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    }
+  ],
+  "consultasResueltas": [
+    {
+      "id": "0008",
+      "nombre": "Ismael Marin",
+      "hora": "14:48:56",
+      "fecha": "24/08/2025",
+      "categoria": "github",
+      "descripcion": "no quele",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0009",
+      "nombre": "Ariana Solis",
+      "hora": "08:55:06",
+      "fecha": "28/08/2025",
+      "categoria": "css",
+      "descripcion": "No se aplica el estilo que quiero",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0010",
+      "nombre": "Manuel Portuguez",
+      "hora": "08:56:17",
+      "fecha": "28/08/2025",
+      "categoria": "css",
+      "descripcion": "No me sale la estructura que quiero para la página",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0012",
+      "nombre": "Ismael Marin",
+      "hora": "09:21:10",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "nope",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0001",
+      "nombre": "Alfredo Torres",
+      "hora": "08:54:28",
+      "fecha": "28/08/2025",
+      "categoria": "nodejs",
+      "descripcion": "me dice que la dirección no llega",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    }
+  ]
 }

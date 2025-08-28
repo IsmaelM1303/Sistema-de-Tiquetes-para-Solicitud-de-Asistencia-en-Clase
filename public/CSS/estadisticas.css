@@ -30,11 +30,15 @@ body {
 #contenedorDatos{
     grid-area: contenedorDatos;
 }
+
+#agregarPersonal{
+    grid-area: agregarPersonal;
+}
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-        "contenedorFiltros contenedorFiltros contenedorDatos"
+        "contenedorDatos contenedorFiltros agregarPersonal"
         "contenedorTodas contenedorFiltro contenedorCompletas"
     ;
 }

@@ -13,7 +13,7 @@
         <h1>Estadísticas</h1>
     </header>
     <main>
-        
+
         <div id="contenedorFiltros">
             <button id="back">Volver a Lista de Tiquetes</button>
             <div>
@@ -49,6 +49,38 @@
             </div>
             <button id="aplicarFlitros">Aplicar filtros</button>
         </div>
+        <div id="agregarPersonal">
+            <div>
+                <label>Nombre</label>
+                <input type="text" id="nombre" />
+            </div>
+
+            <div>
+                <label>Apellido</label>
+                <input type="text" id="apellido" />
+            </div>
+
+            <div>
+                <label>Contraseña</label>
+                <input type="password" id="contrasena" />
+            </div>
+
+            <div>
+                <label>Sede</label>
+                <select id="sede">
+                    <option disabled selected>Elegir sede</option>
+                    <option>La Capri</option>
+                    <option>Puntarenas</option>
+                    <option>Forward</option>
+                </select>
+            </div>
+
+            <div>
+                <button id="btnCrearEstudiante">Registrar nuevo estudiante</button>
+                <button id="btnCrearProfesor">Registrar nuevo profesor</button>
+            </div>
+        </div>
+
         <div id="mostrarDatos"></div>
         <div id="contenedorTodas"></div>
         <div id="contenedorFiltro"></div>

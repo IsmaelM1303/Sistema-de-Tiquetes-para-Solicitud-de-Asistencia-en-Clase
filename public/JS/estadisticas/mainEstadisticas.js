@@ -1,11 +1,20 @@
-import { getData } from "../../services/CRUD.js"
+//Importaciones
+import { getData, createData, updateData} from "../../services/CRUD.js"
 
+//Variables globales
 const filtroNombre = document.getElementById("filtroNombre")
 const categoriaConsulta = document.getElementById("categoriaConsulta")
 const filtroSede = document.getElementById("filtroSede")
 const filtroRevisadas = document.getElementById("filtroRevisadas")
 const mostrarDatos = document.getElementById("mostrarDatos")
+const nombreInput = document.getElementById("nombre")
+const apellidoInput = document.getElementById("apellido")
+const contrasenaInput = document.getElementById("contrasena")
+const sedeSelect = document.getElementById("sede")
 
+//Variables globales 
+document.getElementById("btnCrearEstudiante").addEventListener("click", () => registrarUsuario("e"))
+document.getElementById("btnCrearProfesor").addEventListener("click", () => registrarUsuario("p"))
 document.getElementById("back").addEventListener("click", irALista)
 document.getElementById("aplicarFlitros").addEventListener("click", aplicarFiltros)
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,7 +39,7 @@ async function obtenerDatos(tabla) {
         return []
     }
 }
-
+//Esto es para que las consultas que se impriman solo lo hagan bajo el estandar esperado
 export async function actualizarLista() {
     const contenedorTodas = document.getElementById("contenedorTodas")
     const contenedorCompletas = document.getElementById("contenedorCompletas")
@@ -58,14 +67,14 @@ export async function actualizarLista() {
         console.error("Ocurrió un error al mostrar los marcadores:", error)
     }
 }
-
+//Esto es para escribir texto
 function texto(id, contenido) {
     const contenedor = document.getElementById(id)
     const texto = document.createElement("h2")
     texto.textContent = contenido
     contenedor.appendChild(texto)
 }
-
+//Esto es para que se impriman las consultas
 function crearMostrarConsulta(consulta, contenedor) {
     const contenedorTodas = document.getElementById(contenedor)
     const contenedorConsulta = document.createElement("div")
@@ -103,6 +112,7 @@ function crearMostrarConsulta(consulta, contenedor) {
     contenedorTodas.appendChild(contenedorConsulta)
 }
 
+//Esto es para que se muestren las consultas una vez filtradas
 async function aplicarFiltros() {
     const contenedorFiltro = document.getElementById("contenedorFiltro")
     const consultas = await obtenerDatos("consultas")
@@ -136,6 +146,7 @@ function convertirFecha(fechaStr) {
     return new Date(año, mes, dia)
 }
 
+// Esto es para que se muestren las estadísticas
 async function mostrarEstadisticas() {
     mostrarDatos.innerHTML = ""
 
@@ -200,4 +211,37 @@ async function mostrarEstadisticas() {
         pCategoria.textContent = 'Solicitudes en categoría "' + categoria + '": ' + cantidad
         mostrarDatos.appendChild(pCategoria)
     })
+}
+
+//Esto es para registrar usuarios
+async function registrarUsuario(letra) {
+    const nombreCompleto = nombreInput.value + " " + apellidoInput.value
+    const usuarios = await obtenerDatos("usuarios")
+    const contadores = usuarios.find(u => u.id === "0")
+
+    if (letra === "p") {
+        const nuevoId = letra + "fwd" + contadores.contadorProfesores
+        const nuevoUsuario = {
+            id: nuevoId,
+            nombre: nombreCompleto,
+            contrasena: contrasenaInput.value,
+            sede: sedeSelect.value
+        }
+        await createData("usuarios", nuevoUsuario)
+        const nuevoValor = parseInt(contadores.contadorProfesores) +1
+        contadores.contadorProfesores = JSON.stringify(nuevoValor)
+        await updateData("usuarios", contadores)
+    } else if (letra === "e") {
+        const nuevoId = letra + "fwd" + contadores.contadorEstudiantes
+        const nuevoUsuario = {
+            id: nuevoId,
+            nombre: nombreCompleto,
+            contrasena: contrasenaInput.value,
+            sede: sedeSelect.value
+        }
+        await createData("usuarios", nuevoUsuario)
+        const nuevoValor = parseInt(contadores.contadorEstudiantes) +1
+        contadores.contadorEstudiantes = JSON.stringify(nuevoValor)
+        await updateData("usuarios", contadores.id, contadores)
+    }
 }
