@@ -68,28 +68,33 @@ function crearMostrarConsulta(consulta, contenedor) {
     // Aquí creo los elementos 
     const contenedorConsulta = document.createElement("div")
     const nombre = document.createElement("p")
-    nombre.textContent = consulta.nombre
+    nombre.textContent = "Nombre del estudiante: " + consulta.nombre
     nombre.classList.add("dato")
 
     const hora = document.createElement("p")
-    hora.textContent = consulta.hora
+    hora.textContent = "Hora: " +  consulta.hora
     hora.classList.add("dato")
 
+    const fecha = document.createElement("p")
+    fecha.textContent = "Fecha: " + consulta.fecha
+    fecha.classList.add("dato")
+
     const categoria = document.createElement("p")
-    categoria.textContent = consulta.categoria
+    categoria.textContent = "Categoría: " + consulta.categoria
     categoria.classList.add("dato")
 
     const descripcion = document.createElement("p")
-    descripcion.textContent = consulta.descripcion
+    descripcion.textContent = "Descripción de la consulta: " + consulta.descripcion
     descripcion.classList.add("dato")
 
     const locacion = document.createElement("p")
-    locacion.textContent = consulta.sede
+    locacion.textContent = "Sede: " + consulta.sede
     locacion.classList.add("dato")
 
     // Esto es para añadirlos al DOM
     contenedorConsulta.appendChild(nombre)
     contenedorConsulta.appendChild(hora)
+    contenedorConsulta.appendChild(fecha)
     contenedorConsulta.appendChild(categoria)
     contenedorConsulta.appendChild(descripcion)
     contenedorConsulta.appendChild(locacion)
@@ -104,6 +109,6 @@ async function aplicarFiltros() {
     const consultasCompletas = await obtenerDatos("consultasResueltas")
     contenedorFiltro.innerHTML = ""
     
-    
+
     
 }
