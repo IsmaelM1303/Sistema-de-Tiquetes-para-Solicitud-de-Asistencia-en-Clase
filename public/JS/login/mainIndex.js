@@ -43,3 +43,4 @@ async function validarLogin(e) {
         mensaje.appendChild(contenidoMensaje)
     }
 }
+

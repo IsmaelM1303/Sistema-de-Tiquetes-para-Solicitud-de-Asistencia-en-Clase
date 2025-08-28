@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizarLista()
 })
 
+//Esto hace que el checkbox cambie su valor a lo que está en el db
 filtroRevisadas.addEventListener("change", () => {
-    filtroRevisadas.value = filtroRevisadas.checked ? "Resuelta" : "Sin resolver"    
+    filtroRevisadas.value = filtroRevisadas.checked ? "Resuelta" : "Sin resolver"
 })
 
 function irALista() {
@@ -44,12 +45,23 @@ export async function actualizarLista() {
         texto("contenedorTodas", "Todas las consultas")
         texto("contenedorFiltro", "Consultas por filtro")
         texto("contenedorCompletas", "Consultas completadas")
+        //Esta imprime la sección izquierda de "Todas las consultas"
         consultas.forEach(consulta => {
             crearMostrarConsulta(consulta, "contenedorTodas")
         })
+        //Esto es para que cumpla lo de los 3 días
         consultasCompletas.forEach(consulta => {
-            crearMostrarConsulta(consulta, "contenedorCompletas")
-        })
+            const [dia, mes, año] = consulta.fecha.split("/");
+            const fechaConsulta = new Date(`${año}-${mes}-${dia}`);
+            const hoy = new Date();
+            const tresDiasAtras = new Date();
+            tresDiasAtras.setDate(hoy.getDate() - 3);
+
+            // Solo muestra si está en los últimos 3 días
+            if (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) {
+                crearMostrarConsulta(consulta, "contenedorCompletas");
+            }
+        });
     } catch (error) {
         console.error("Ocurrió un error al mostrar los marcadores:", error)
     }
@@ -72,7 +84,7 @@ function crearMostrarConsulta(consulta, contenedor) {
     nombre.classList.add("dato")
 
     const hora = document.createElement("p")
-    hora.textContent = "Hora: " +  consulta.hora
+    hora.textContent = "Hora: " + consulta.hora
     hora.classList.add("dato")
 
     const fecha = document.createElement("p")
@@ -104,11 +116,30 @@ function crearMostrarConsulta(consulta, contenedor) {
 
 
 async function aplicarFiltros() {
-    const contenedorFiltro = document.getElementById("contenedorFiltro")
-    const consultas = await obtenerDatos("consultas")
-    const consultasCompletas = await obtenerDatos("consultasResueltas")
-    contenedorFiltro.innerHTML = ""
-    
+    const contenedorFiltro = document.getElementById("contenedorFiltro");
+    const consultas = await obtenerDatos("consultas");
+    const consultasCompletas = await obtenerDatos("consultasResueltas");
+    contenedorFiltro.innerHTML = "";
 
-    
+    // Obtén los valores de los filtros
+    const nombreValor = filtroNombre.value.trim();
+    const categoriaValor = categoriaConsulta.value.trim();
+    const sedeValor = filtroSede.value.trim();
+    const revisadasValor = filtroRevisadas.value.trim();
+
+    // Elige el array según el filtro de revisadas
+    const lista = revisadasValor === "Resuelta" ? consultasCompletas : consultas;
+
+    // Filtra según los valores (si están vacíos, no filtra por ese campo)
+    const filtradas = lista.filter(consulta => {
+        const coincideNombre = nombreValor === "" || consulta.nombre.includes(nombreValor);
+        const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
+        const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
+        return coincideNombre && coincideCategoria && coincideSede;
+    });
+
+    // Imprime las consultas filtradas
+    filtradas.forEach(consulta => {
+        crearMostrarConsulta(consulta, "contenedorFiltro");
+    });
 }
