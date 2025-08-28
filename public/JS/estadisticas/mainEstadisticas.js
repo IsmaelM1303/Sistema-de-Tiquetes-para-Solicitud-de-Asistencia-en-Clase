@@ -1,27 +1,24 @@
-//Importaciones
-import { getData } from "../../services/CRUD.js";
+import { getData } from "../../services/CRUD.js"
 
-//Datos globales
 const filtroNombre = document.getElementById("filtroNombre")
 const categoriaConsulta = document.getElementById("categoriaConsulta")
 const filtroSede = document.getElementById("filtroSede")
 const filtroRevisadas = document.getElementById("filtroRevisadas")
+const mostrarDatos = document.getElementById("mostrarDatos")
 
-
-//Datos globales con triggers
 document.getElementById("back").addEventListener("click", irALista)
 document.getElementById("aplicarFlitros").addEventListener("click", aplicarFiltros)
 document.addEventListener("DOMContentLoaded", () => {
     actualizarLista()
+    mostrarEstadisticas()
 })
 
-//Esto hace que el checkbox cambie su valor a lo que está en el db
 filtroRevisadas.addEventListener("change", () => {
     filtroRevisadas.value = filtroRevisadas.checked ? "Resuelta" : "Sin resolver"
 })
 
 function irALista() {
-    window.location.href = "../pages/listaConsultas.html";
+    window.location.href = "../pages/listaConsultas.html"
 }
 
 async function obtenerDatos(tabla) {
@@ -34,7 +31,6 @@ async function obtenerDatos(tabla) {
     }
 }
 
-//Esto vuelve a crear la lista
 export async function actualizarLista() {
     const contenedorTodas = document.getElementById("contenedorTodas")
     const contenedorCompletas = document.getElementById("contenedorCompletas")
@@ -45,23 +41,19 @@ export async function actualizarLista() {
         texto("contenedorTodas", "Todas las consultas")
         texto("contenedorFiltro", "Consultas por filtro")
         texto("contenedorCompletas", "Consultas completadas")
-        //Esta imprime la sección izquierda de "Todas las consultas"
         consultas.forEach(consulta => {
             crearMostrarConsulta(consulta, "contenedorTodas")
         })
-        //Esto es para que cumpla lo de los 3 días
         consultasCompletas.forEach(consulta => {
-            const [dia, mes, año] = consulta.fecha.split("/");
-            const fechaConsulta = new Date(`${año}-${mes}-${dia}`);
-            const hoy = new Date();
-            const tresDiasAtras = new Date();
-            tresDiasAtras.setDate(hoy.getDate() - 3);
-
-            // Solo muestra si está en los últimos 3 días
+            const [dia, mes, año] = consulta.fecha.split("/")
+            const fechaConsulta = new Date(`${año}-${mes}-${dia}`)
+            const hoy = new Date()
+            const tresDiasAtras = new Date()
+            tresDiasAtras.setDate(hoy.getDate() - 3)
             if (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) {
-                crearMostrarConsulta(consulta, "contenedorCompletas");
+                crearMostrarConsulta(consulta, "contenedorCompletas")
             }
-        });
+        })
     } catch (error) {
         console.error("Ocurrió un error al mostrar los marcadores:", error)
     }
@@ -74,10 +66,8 @@ function texto(id, contenido) {
     contenedor.appendChild(texto)
 }
 
-//Esto crea los elementos a mostrar en la lista de consultas
 function crearMostrarConsulta(consulta, contenedor) {
     const contenedorTodas = document.getElementById(contenedor)
-    // Aquí creo los elementos 
     const contenedorConsulta = document.createElement("div")
     const nombre = document.createElement("p")
     nombre.textContent = "Nombre del estudiante: " + consulta.nombre
@@ -103,7 +93,6 @@ function crearMostrarConsulta(consulta, contenedor) {
     locacion.textContent = "Sede: " + consulta.sede
     locacion.classList.add("dato")
 
-    // Esto es para añadirlos al DOM
     contenedorConsulta.appendChild(nombre)
     contenedorConsulta.appendChild(hora)
     contenedorConsulta.appendChild(fecha)
@@ -114,32 +103,101 @@ function crearMostrarConsulta(consulta, contenedor) {
     contenedorTodas.appendChild(contenedorConsulta)
 }
 
-
 async function aplicarFiltros() {
-    const contenedorFiltro = document.getElementById("contenedorFiltro");
-    const consultas = await obtenerDatos("consultas");
-    const consultasCompletas = await obtenerDatos("consultasResueltas");
-    contenedorFiltro.innerHTML = "";
+    const contenedorFiltro = document.getElementById("contenedorFiltro")
+    const consultas = await obtenerDatos("consultas")
+    const consultasCompletas = await obtenerDatos("consultasResueltas")
+    contenedorFiltro.innerHTML = ""
 
-    // Obtén los valores de los filtros
-    const nombreValor = filtroNombre.value.trim();
-    const categoriaValor = categoriaConsulta.value.trim();
-    const sedeValor = filtroSede.value.trim();
-    const revisadasValor = filtroRevisadas.value.trim();
+    const nombreValor = filtroNombre.value.trim()
+    const categoriaValor = categoriaConsulta.value.trim()
+    const sedeValor = filtroSede.value.trim()
+    const revisadasValor = filtroRevisadas.value.trim()
 
-    // Elige el array según el filtro de revisadas
-    const lista = revisadasValor === "Resuelta" ? consultasCompletas : consultas;
+    const lista = revisadasValor === "Resuelta" ? consultasCompletas : consultas
 
-    // Filtra según los valores (si están vacíos, no filtra por ese campo)
     const filtradas = lista.filter(consulta => {
-        const coincideNombre = nombreValor === "" || consulta.nombre.includes(nombreValor);
-        const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
-        const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
-        return coincideNombre && coincideCategoria && coincideSede;
-    });
+    const coincideNombre = nombreValor === "" || consulta.nombre.toLowerCase().includes(nombreValor.toLowerCase());
+    const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
+    const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
+    return coincideNombre && coincideCategoria && coincideSede;
+});
 
-    // Imprime las consultas filtradas
     filtradas.forEach(consulta => {
-        crearMostrarConsulta(consulta, "contenedorFiltro");
-    });
+        crearMostrarConsulta(consulta, "contenedorFiltro")
+    })
+}
+
+function convertirFecha(fechaStr) {
+    const partes = fechaStr.split("/")
+    const dia = Number(partes[0])
+    const mes = Number(partes[1]) - 1
+    const año = Number(partes[2])
+    return new Date(año, mes, dia)
+}
+
+async function mostrarEstadisticas() {
+    mostrarDatos.innerHTML = ""
+
+    const consultas = await obtenerDatos("consultas")
+    const consultasResueltas = await obtenerDatos("consultasResueltas")
+
+    const totalSolicitudes = consultas.length + consultasResueltas.length
+    const totalRevisadas = consultasResueltas.length
+
+    const hoy = new Date()
+    const tresDiasAtras = new Date()
+    tresDiasAtras.setDate(hoy.getDate() - 3)
+
+    const revisadasUltimos3Dias = consultasResueltas.reduce(function(acc, consulta) {
+        const fechaConsulta = convertirFecha(consulta.fecha)
+        if (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) {
+            return acc + 1
+        }
+        return acc
+    }, 0)
+
+    const totalPorRevisar = consultas.length
+
+    const solicitudesPorSede = [...consultas, ...consultasResueltas].reduce(function(acc, consulta) {
+        const sede = consulta.sede
+        acc[sede] = (acc[sede] || 0) + 1
+        return acc
+    }, {})
+
+    const solicitudesPorCategoria = [...consultas, ...consultasResueltas].reduce(function(acc, consulta) {
+        const categoria = consulta.categoria
+        acc[categoria] = (acc[categoria] || 0) + 1
+        return acc
+    }, {})
+
+    const pTotal = document.createElement("p")
+    pTotal.textContent = "Solicitudes totales: " + totalSolicitudes
+    mostrarDatos.appendChild(pTotal)
+
+    const pRevisadas = document.createElement("p")
+    pRevisadas.textContent = "Solicitudes revisadas: " + totalRevisadas
+    mostrarDatos.appendChild(pRevisadas)
+
+    const pRevisadas3Dias = document.createElement("p")
+    pRevisadas3Dias.textContent = "Solicitudes revisadas (últimos 3 días): " + revisadasUltimos3Dias
+    mostrarDatos.appendChild(pRevisadas3Dias)
+
+    const pPorRevisar = document.createElement("p")
+    pPorRevisar.textContent = "Solicitudes por revisar: " + totalPorRevisar
+    mostrarDatos.appendChild(pPorRevisar)
+
+    Object.keys(solicitudesPorSede).forEach(function(sede) {
+        const cantidad = solicitudesPorSede[sede]
+        const pSede = document.createElement("p")
+        pSede.textContent = 'Solicitudes en sede "' + sede + '": ' + cantidad
+        mostrarDatos.appendChild(pSede)
+    })
+
+    Object.keys(solicitudesPorCategoria).forEach(function(categoria) {
+        const cantidad = solicitudesPorCategoria[categoria]
+        const pCategoria = document.createElement("p")
+        pCategoria.textContent = 'Solicitudes en categoría "' + categoria + '": ' + cantidad
+        mostrarDatos.appendChild(pCategoria)
+    })
 }

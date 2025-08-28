@@ -27,12 +27,14 @@ body {
 #contenedorCompletas {
     grid-area: contenedorCompletas;
 }
-
+#contenedorDatos{
+    grid-area: contenedorDatos;
+}
 main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-        "contenedorFiltros contenedorFiltros contenedorFiltros"
+        "contenedorFiltros contenedorFiltros contenedorDatos"
         "contenedorTodas contenedorFiltro contenedorCompletas"
     ;
 }
