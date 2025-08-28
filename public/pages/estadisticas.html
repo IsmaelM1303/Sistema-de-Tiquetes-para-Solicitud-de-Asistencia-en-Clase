@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estadísticas</title>
+    <link rel="stylesheet" href="../CSS/estadisticas.css">
 </head>
 
 <body>
@@ -12,12 +13,12 @@
         <h1>Estadísticas</h1>
     </header>
     <main>
-        <button id="back">Volver a Lista de Tiquetes</button>
-
+        
         <div id="contenedorFiltros">
+            <button id="back">Volver a Lista de Tiquetes</button>
             <div>
-                <label>Filtro por Id</label>
-                <input type="text" placeholder="filtroId">
+                <label>Filtro por Nombre</label>
+                <input type="text" id="filtroNombre">
             </div>
             <div>
                 <label>Filtro por categoría</label>
@@ -43,11 +44,16 @@
                 </select>
             </div>
             <div>
-                <label>Filtro por consultas revisadas</label>
+                <label>Mostrar sin revisar/solo revisadas</label>
                 <input type="checkbox" id="filtroRevisadas">
             </div>
             <button id="aplicarFlitros">Aplicar filtros</button>
         </div>
+        <div id="contenedorTodas"></div>
+        <div id="contenedorFiltro"></div>
+        <div id="contenedorCompletas"></div>
+
+
     </main>
 
     <script type="module" src="../JS/estadisticas/mainEstadisticas.js"></script>

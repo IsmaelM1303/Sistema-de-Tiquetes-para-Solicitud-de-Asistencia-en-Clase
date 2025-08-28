@@ -143,21 +143,32 @@ export async function actualizarLista() {
 function nuevaConsulta() {
     const categoriaConsulta = document.getElementById("categoriaConsulta")
     const descripcionConsulta = document.getElementById("descripcionConsulta")
-    //Saco la hora
-    const ahora = new Date();
-    const horas = String(ahora.getHours()).padStart(2, '0');
-    const minutos = String(ahora.getMinutes()).padStart(2, '0');
-    const segundos = String(ahora.getSeconds()).padStart(2, '0');
-    const horaFormateada = `${horas}:${minutos}:${segundos}`;
+    //Saco la hora y la fecha
+const ahora = new Date()
+
+const horas = String(ahora.getHours()).padStart(2, '0')
+const minutos = String(ahora.getMinutes()).padStart(2, '0')
+const segundos = String(ahora.getSeconds()).padStart(2, '0')
+
+const dia = String(ahora.getDate()).padStart(2, '0')
+const mes = String(ahora.getMonth() + 1).padStart(2, '0') // los meses van de 0 a 11
+const año = ahora.getFullYear()
+
+const horaFormateada = `${horas}:${minutos}:${segundos}`
+const fechaFormateada = `${dia}/${mes}/${año}`
+
 
     //Hago el objeto
     const nuevaConsulta = {
         id: usuario.id,
         nombre: usuario.nombre,
         hora: horaFormateada,
+        fecha: fechaFormateada,
         categoria: categoriaConsulta.value,
         descripcion: descripcionConsulta.value,
-        sede: usuario.sede
+        sede: usuario.sede,
+        estado: "Sin resolver"
+
     }
 
     //lo guardo y confirmo al usuario

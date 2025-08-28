@@ -42,7 +42,7 @@ function crearMostrarProfesor(consulta) {
     // Campo: Nombre
     const labelNombre = document.createElement("label")
     labelNombre.htmlFor = "nombre-" + consulta.id
-    labelNombre.textContent = "Nombre del profesor"
+    labelNombre.textContent = "Nombre del estudiante"
 
     const inputNombre = document.createElement("input")
     inputNombre.type = "text"
@@ -59,6 +59,13 @@ function crearMostrarProfesor(consulta) {
     hora.textContent = "Hora de la consulta: " + consulta.hora
     hora.classList.add("dato")
     grupoHora.appendChild(hora)
+
+    // Campo: Fecha (solo visual)
+    const grupoFecha = document.createElement("div")
+    const fecha = document.createElement("p")
+    fecha.textContent = "Fecha de la consulta: " + consulta.fecha
+    fecha.classList.add("dato")
+    grupoFecha.appendChild(fecha)
 
     // Campo: Categoría (select)
     const grupoCategoria = document.createElement("div")
@@ -131,6 +138,7 @@ function crearMostrarProfesor(consulta) {
             id: consulta.id,
             nombre: inputNombre.value,
             hora: consulta.hora,
+            fecha: consulta.fecha,
             categoria: selectCategoria.value,
             descripcion: textareaDescripcion.value,
             sede: inputSede.value
@@ -147,9 +155,11 @@ function crearMostrarProfesor(consulta) {
             id: consulta.id,
             nombre: inputNombre.value,
             hora: consulta.hora,
+            fecha: consulta.fecha,
             categoria: selectCategoria.value,
             descripcion: textareaDescripcion.value,
-            sede: inputSede.value
+            sede: inputSede.value,
+            estado:"Resuelta"
         }
         createData("consultasResueltas", datosActualizados)
         deleteData("consultas", consulta.id)
@@ -160,6 +170,7 @@ function crearMostrarProfesor(consulta) {
     contenedor.append(
         grupoNombre,
         grupoHora,
+        grupoFecha,
         grupoCategoria,
         grupoDescripcion,
         grupoSede,

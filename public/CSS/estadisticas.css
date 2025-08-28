@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-template-areas:
+        "header"
+        "main"
+    ;
+}
+/*Grid areas para que funcionen*/
+#contenedorFiltros {
+    grid-area: contenedorFiltros;
+}
+
+#contenedorTodas {
+    grid-area: contenedorTodas;
+}
+
+#contenedorFiltro {
+    grid-area: contenedorFiltro;
+}
+
+#contenedorCompletas {
+    grid-area: contenedorCompletas;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "contenedorFiltros contenedorFiltros contenedorFiltros"
+        "contenedorTodas contenedorFiltro contenedorCompletas"
+    ;
+}
