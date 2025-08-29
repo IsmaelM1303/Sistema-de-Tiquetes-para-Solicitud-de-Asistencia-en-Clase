@@ -1,211 +1,245 @@
 /* Paleta de colores */
 :root {
-  --morado: #662D91;
-  --rosa: #EC008C;
-  --gris-oscuro: #4D4D4D;
-  --naranja: #F7901E;
-  --amarillo: #FDCA06;
-  --azul: #008FD4;
-  --turquesa: #20BEC6;
-  --gris-claro: #EFEFEF;
+    --morado: #662D91;
+    --rosa: #EC008C;
+    --gris-oscuro: #4D4D4D;
+    --naranja: #F7901E;
+    --amarillo: #FDCA06;
+    --azul: #008FD4;
+    --turquesa: #20BEC6;
+    --gris-claro: #EFEFEF;
 }
 
 /* Layout principal */
-html, body {
-  font-family: 'Oswald', 'Lora', 'Inter', sans-serif;
-  background: var(--gris-claro);
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+html,
+body {
+    font-family: 'Oswald', 'Lora', 'Inter', sans-serif;
+    background: var(--gris-claro);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-  background: var(--morado);
-  color: var(--gris-claro);
-  padding: 1rem 2rem;
-  text-align: center;
-  flex-shrink: 0;
+    background: var(--morado);
+    color: var(--gris-claro);
+    padding: 1rem 2rem;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 header h1 {
-  font-size: 1.8rem;
-  margin: 0;
+    font-size: 1.8rem;
+    margin: 0;
 }
 
 header h2 {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-  color: var(--amarillo);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: var(--amarillo);
 }
 
 #contenedor {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 2rem;
-  padding: 2rem;
-  flex: 1;
-  box-sizing: border-box;
-  overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    padding: 2rem;
+    flex: 1;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* Panel lateral */
 aside {
-  background: var(--morado);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(102,45,145,0.08);
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  color: var(--gris-claro);
-  overflow: hidden;
+    background: var(--morado);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(102, 45, 145, 0.08);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: var(--gris-claro);
+    overflow: hidden;
 }
 
 aside button {
-  background: var(--azul);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.7rem 1.2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: 'Oswald', 'Inter', sans-serif;
-  font-weight: 600;
-  transition: background 0.2s;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-weight: 600;
+    transition: background 0.2s;
+    width: 100%;
 }
 
 aside button:hover {
-  background: var(--rosa);
+    background: var(--rosa);
 }
 
 #mensajeConfirmacion {
-  color: var(--amarillo);
-  font-size: 0.95rem;
-  text-align: center;
+    color: var(--amarillo);
+    font-size: 0.95rem;
+    text-align: center;
 }
+
 
 /* Contenedor de consultas */
 main {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(102,45,145,0.08);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  overflow-y: auto;
-  height: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(102, 45, 145, 0.08);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "h2Main h2Main logo"
+        "contenedor contenedor contenedor";
+    gap: 1.5rem;
+    overflow-y: scroll;
+    height: 80%;
+}
+
+#logoForward {
+    grid-area: logo;
+    border-radius: 2cap;
+    align-self: center;
+    width: 15cap;
+    height: auto;
+    padding: 3cap;
+    border: none;
 }
 
 main h2 {
-  font-size: 1.4rem;
-  color: var(--azul);
-  margin-bottom: 1rem;
-  font-weight: 600;
+    grid-area: h2Main;
+    font-size: 1.4rem;
+    color: var(--azul);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+#contenedorConsultas {
+    grid-area: contenedor;
 }
 
 /* Cada consulta */
 .consulta {
-  background: var(--gris-claro);
-  border: 2px solid var(--turquesa);
-  border-radius: 8px;
-  padding: 1rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  box-shadow: 0 1px 4px rgba(32,190,198,0.04);
-  transition: box-shadow 0.2s, border-color 0.2s;
+    background: var(--gris-claro);
+    border: 2px solid var(--turquesa);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 4px rgba(32, 190, 198, 0.04);
+    transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .consulta:hover {
-  box-shadow: 0 4px 16px rgba(0,143,212,0.10);
-  border-color: var(--azul);
+    box-shadow: 0 4px 16px rgba(0, 143, 212, 0.10);
+    border-color: var(--azul);
 }
 
 .dato {
-  font-family: 'Lora', 'Inter', serif;
-  font-size: 1rem;
-  color: var(--gris-oscuro);
-  margin: 0;
+    font-family: 'Lora', 'Inter', serif;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    margin: 0;
 }
 
 .dato strong {
-  color: var(--morado);
-  font-weight: 500;
+    color: var(--morado);
+    font-weight: 500;
 }
 
 /* Nuevas clases integradas */
+.consulta label {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    margin: 0.2rem 0;
+    font-weight: 600;
+}
+
 .input-consulta {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--gris-oscuro);
-  border-radius: 6px;
-  background: #fff;
-  font-family: 'Lora', 'Inter', serif;
-  font-size: 1rem;
-  color: var(--gris-oscuro);
-  width: 100%;
-  box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gris-oscuro);
+    border-radius: 6px;
+    background: #fff;
+    font-family: 'Lora', 'Inter', serif;
+    font-style: normal;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .texto-consulta {
-  font-family: 'Lora', 'Inter', serif;
-  font-size: 1rem;
-  color: var(--gris-oscuro);
-  margin: 0.2rem 0;
+    font-family: 'Lora', 'Inter', serif;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    margin: 0.2rem 0;
+    font-style: italic;
 }
 
 .textarea-consulta {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--gris-oscuro);
-  border-radius: 6px;
-  background: #fff;
-  font-family: 'Lora', 'Inter', serif;
-  font-size: 1rem;
-  color: var(--gris-oscuro);
-  width: 100%;
-  min-height: 80px;
-  resize: vertical;
-  box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--gris-oscuro);
+    border-radius: 6px;
+    background: #fff;
+    font-family: 'Lora', 'Inter', serif;
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    width: 100%;
+    min-height: 80px;
+    resize: vertical;
+    box-sizing: border-box;
+    font-style: normal;
 }
 
 .boton-consulta {
-  background: var(--azul);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  font-family: 'Oswald', 'Inter', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  align-self: start;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: start;
 }
 
 .boton-consulta:hover {
-  background: var(--rosa);
+    background: var(--rosa);
 }
 
 /* Mensaje vacío */
 #mensajeVacio {
-  text-align: center;
-  color: var(--rosa);
-  font-size: 1.1rem;
-  margin-top: 2rem;
+    text-align: center;
+    color: var(--rosa);
+    font-size: 1.1rem;
+    margin-top: 2rem;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
-  #contenedor {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1rem;
-  }
+    #contenedor {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
 
-  aside, main {
-    padding: 1rem;
-  }
+    aside,
+    main {
+        padding: 1rem;
+    }
 }
