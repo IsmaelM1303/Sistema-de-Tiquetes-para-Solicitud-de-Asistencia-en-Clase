@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Oswald:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../sources/IMGs/Login/backGroundImg.png);
+    background-position: fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    font-family: 'Oswald', sans-serif;
+    color: #FDCA06;
+    text-align: center;
+    margin-top: 3%;
+    text-shadow: 1px 1px #4D4D4D;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 145%;
+}
+
+#logoForward {
+    width: 15cap;
+    height: auto;
+    position: fixed;
+    bottom: 2cap;
+    right: 2cap;
+}
+
+main {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    width: 100%;
+    margin-top: 3%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedorFormulario {
+    background-color: rgba(247, 144, 30, 0.7);
+    width: 100%;
+    max-width: 500px;
+    height: 40cap;
+    border-radius: 3cap;
+    padding: 2cap;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#contenedorFormulario:hover {
+    background-color: rgba(0, 143, 212, 0.7)
+
+}
+
+#contenedorFormulario div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 85%;
+    margin-top: 8%;
+}
+
+#contenedorFormulario div label {
+    color: #EFEFEF;
+    font-size: 150%;
+    margin-bottom: 5%;
+}
+
+#contenedorFormulario div input {
+    border-color: transparent;
+    border-radius: 2cap;
+    padding: 5%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 130%;
+    color: #FDCA06;
+    background-color: efefef;
+    transition: background-color 0.3s ease;
+}
+
+#contenedorFormulario div input::placeholder {
+    font-family: 'Oswald', sans-serif;
+    font-size: 130%;
+    color: #FDCA06;
+
+}
+
+#contenedorFormulario div input:hover {
+    background-color: #EC008C;
+    
+}
+
+#contenedorFormulario div input::placeholder {
+    font-family: 'Oswald', sans-serif;
+    font-size: 130%;
+    color: #FDCA06;
+
+}
+
+#contenedorFormulario div input:hover::placeholder {
+    color: #EFEFEF;
+}
+
+#contenedorFormulario div input:focus {
+    background-color: #662D91;
+    outline: none;
+}
+
+#contenedorFormulario p {
+    color: #EFEFEF;
+    font-size: 120%;
+    margin-top: 5%;
+}
+
+#btnInicioSesion {
+    display: block;
+    margin: 2cap auto 0 auto;
+    padding: 3%;
+    width: 50%;
+    border-color: transparent;
+    border-radius: 3cap;
+    background-color: #FDCA06;
+    color: #EFEFEF;
+}
+
+#btnInicioSesion:hover{
+    background-color: #008FD4;
+}

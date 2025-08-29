@@ -1,50 +1,48 @@
-import { updateData, createData, deleteData} from "../services/CRUD.js"
-import { actualizarLista, } from "./consultas/mainConsultas.js"
+import { updateData, createData, deleteData } from "../services/CRUD.js"
+import { actualizarLista } from "./consultas/mainConsultas.js"
 
-//Esto crea los elementos a mostrar en la lista de consultas
 function crearMostrarEstudiante(consulta) {
-    const usuario = JSON.parse(localStorage.getItem("Usuario"));
+    const usuario = JSON.parse(localStorage.getItem("Usuario"))
     if (consulta.nombre !== usuario.nombre) {
-        return; // No imprime si no coincide
+        return
     }
 
-    const contenedorConsulta = document.createElement("div");
+    const contenedorConsulta = document.createElement("div")
+    contenedorConsulta.classList.add("consulta")
 
-    // Aquí creo los elementos
-    const nombre = document.createElement("p");
-    nombre.textContent = consulta.nombre;
-    nombre.classList.add("dato");
+    const nombre = document.createElement("p")
+    nombre.textContent = consulta.nombre
+    nombre.classList.add("dato", "texto-consulta")
 
-    const hora = document.createElement("p");
-    hora.textContent = consulta.hora;
-    hora.classList.add("dato");
+    const hora = document.createElement("p")
+    hora.textContent = consulta.hora
+    hora.classList.add("dato", "texto-consulta")
 
-    const categoria = document.createElement("p");
-    categoria.textContent = consulta.categoria;
-    categoria.classList.add("dato");
+    const categoria = document.createElement("p")
+    categoria.textContent = consulta.categoria
+    categoria.classList.add("dato", "texto-consulta")
 
-    const descripcion = document.createElement("p");
-    descripcion.textContent = consulta.descripcion;
-    descripcion.classList.add("dato");
+    const descripcion = document.createElement("p")
+    descripcion.textContent = consulta.descripcion
+    descripcion.classList.add("dato", "texto-consulta")
 
-    const locacion = document.createElement("p");
-    locacion.textContent = consulta.sede;
-    locacion.classList.add("dato");
+    const locacion = document.createElement("p")
+    locacion.textContent = consulta.sede
+    locacion.classList.add("dato", "texto-consulta")
 
-    // Esto es para añadirlos al DOM
-    contenedorConsulta.appendChild(nombre);
-    contenedorConsulta.appendChild(hora);
-    contenedorConsulta.appendChild(categoria);
-    contenedorConsulta.appendChild(descripcion);
-    contenedorConsulta.appendChild(locacion);
+    contenedorConsulta.appendChild(nombre)
+    contenedorConsulta.appendChild(hora)
+    contenedorConsulta.appendChild(categoria)
+    contenedorConsulta.appendChild(descripcion)
+    contenedorConsulta.appendChild(locacion)
 
-    contenedorConsultas.appendChild(contenedorConsulta);
+    contenedorConsultas.appendChild(contenedorConsulta)
 }
 
 function crearMostrarProfesor(consulta) {
     const contenedor = document.createElement("div")
+    contenedor.classList.add("consulta")
 
-    // Campo: Nombre
     const labelNombre = document.createElement("label")
     labelNombre.htmlFor = "nombre-" + consulta.id
     labelNombre.textContent = "Nombre del estudiante"
@@ -53,26 +51,23 @@ function crearMostrarProfesor(consulta) {
     inputNombre.type = "text"
     inputNombre.id = "nombre-" + consulta.id
     inputNombre.value = consulta.nombre
-    inputNombre.classList.add("dato")
+    inputNombre.classList.add("dato", "input-consulta")
 
     const grupoNombre = document.createElement("div")
     grupoNombre.append(labelNombre, inputNombre)
 
-    // Campo: Hora (solo visual)
     const grupoHora = document.createElement("div")
     const hora = document.createElement("p")
     hora.textContent = "Hora de la consulta: " + consulta.hora
-    hora.classList.add("dato")
+    hora.classList.add("dato", "texto-consulta")
     grupoHora.appendChild(hora)
 
-    // Campo: Fecha (solo visual)
     const grupoFecha = document.createElement("div")
     const fecha = document.createElement("p")
     fecha.textContent = "Fecha de la consulta: " + consulta.fecha
-    fecha.classList.add("dato")
+    fecha.classList.add("dato", "texto-consulta")
     grupoFecha.appendChild(fecha)
 
-    // Campo: Categoría (select)
     const grupoCategoria = document.createElement("div")
 
     const labelCategoria = document.createElement("label")
@@ -82,7 +77,7 @@ function crearMostrarProfesor(consulta) {
     const selectCategoria = document.createElement("select")
     selectCategoria.id = "categoria-" + consulta.id
     selectCategoria.name = "tecnologia"
-    selectCategoria.classList.add("dato")
+    selectCategoria.classList.add("dato", "input-consulta")
 
     const opciones = [
         { value: "", text: "Seleccionar categoría", disabled: true, selected: true },
@@ -108,7 +103,6 @@ function crearMostrarProfesor(consulta) {
 
     grupoCategoria.append(labelCategoria, selectCategoria)
 
-    // Campo: Descripción (textarea)
     const labelDescripcion = document.createElement("label")
     labelDescripcion.htmlFor = "descripcion-" + consulta.id
     labelDescripcion.textContent = "Descripción"
@@ -116,12 +110,11 @@ function crearMostrarProfesor(consulta) {
     const textareaDescripcion = document.createElement("textarea")
     textareaDescripcion.id = "descripcion-" + consulta.id
     textareaDescripcion.value = consulta.descripcion
-    textareaDescripcion.classList.add("dato")
+    textareaDescripcion.classList.add("dato", "textarea-consulta")
 
     const grupoDescripcion = document.createElement("div")
     grupoDescripcion.append(labelDescripcion, textareaDescripcion)
 
-    // Campo: Sede
     const labelSede = document.createElement("label")
     labelSede.htmlFor = "locacion-" + consulta.id
     labelSede.textContent = "Sede"
@@ -130,14 +123,14 @@ function crearMostrarProfesor(consulta) {
     inputSede.type = "text"
     inputSede.id = "locacion-" + consulta.id
     inputSede.value = consulta.sede
-    inputSede.classList.add("dato")
+    inputSede.classList.add("dato", "input-consulta")
 
     const grupoSede = document.createElement("div")
     grupoSede.append(labelSede, inputSede)
 
-    // Botón: Guardar
     const botonGuardar = document.createElement("button")
     botonGuardar.textContent = "Guardar cambios"
+    botonGuardar.classList.add("dato", "boton-consulta")
     botonGuardar.addEventListener("click", () => {
         const datosActualizados = {
             id: consulta.id,
@@ -152,9 +145,9 @@ function crearMostrarProfesor(consulta) {
         actualizarLista()
     })
 
-    //Botón: Dar por resuelta
     const botonRevisar = document.createElement("button")
     botonRevisar.textContent = "Dar por resuelta"
+    botonRevisar.classList.add("dato", "boton-consulta")
     botonRevisar.addEventListener("click", () => {
         const datosActualizados = {
             id: consulta.id,
@@ -164,14 +157,13 @@ function crearMostrarProfesor(consulta) {
             categoria: selectCategoria.value,
             descripcion: textareaDescripcion.value,
             sede: inputSede.value,
-            estado:"Resuelta"
+            estado: "Resuelta"
         }
         createData("consultasResueltas", datosActualizados)
         deleteData("consultas", consulta.id)
         actualizarLista()
     })
 
-    // Ensamblar todo
     contenedor.append(
         grupoNombre,
         grupoHora,
@@ -186,4 +178,4 @@ function crearMostrarProfesor(consulta) {
     contenedorConsultas.appendChild(contenedor)
 }
 
-export {crearMostrarEstudiante, crearMostrarProfesor}
+export { crearMostrarEstudiante, crearMostrarProfesor }

@@ -1,5 +1,5 @@
 //Importaciones
-import { getData, createData, updateData} from "../../services/CRUD.js"
+import { getData, createData, updateData } from "../../services/CRUD.js"
 
 //Variables globales
 const filtroNombre = document.getElementById("filtroNombre")
@@ -12,19 +12,24 @@ const apellidoInput = document.getElementById("apellido")
 const contrasenaInput = document.getElementById("contrasena")
 const sedeSelect = document.getElementById("sede")
 
-//Variables globales 
-document.getElementById("btnCrearEstudiante").addEventListener("click", () => registrarUsuario("e"))
-document.getElementById("btnCrearProfesor").addEventListener("click", () => registrarUsuario("p"))
-document.getElementById("back").addEventListener("click", irALista)
-document.getElementById("aplicarFlitros").addEventListener("click", aplicarFiltros)
-document.addEventListener("DOMContentLoaded", () => {
-    actualizarLista()
-    mostrarEstadisticas()
-})
+//Variables globales con triggers
 
-filtroRevisadas.addEventListener("change", () => {
-    filtroRevisadas.value = filtroRevisadas.checked ? "Resuelta" : "Sin resolver"
-})
+if (localStorage.getItem("Usuario") !== "") {
+    document.getElementById("btnCrearEstudiante").addEventListener("click", () => registrarUsuario("e"))
+    document.getElementById("btnCrearProfesor").addEventListener("click", () => registrarUsuario("p"))
+    document.getElementById("back").addEventListener("click", irALista)
+    document.getElementById("aplicarFlitros").addEventListener("click", aplicarFiltros)
+    document.addEventListener("DOMContentLoaded", () => {
+        actualizarLista()
+        mostrarEstadisticas()
+    })
+
+    filtroRevisadas.addEventListener("change", () => {
+        filtroRevisadas.value = filtroRevisadas.checked ? "Resuelta" : "Sin resolver"
+    })
+} else {
+    window.location.href = "../pages/index.html"
+}
 
 function irALista() {
     window.location.href = "../pages/listaConsultas.html"
@@ -127,11 +132,11 @@ async function aplicarFiltros() {
     const lista = revisadasValor === "Resuelta" ? consultasCompletas : consultas
 
     const filtradas = lista.filter(consulta => {
-    const coincideNombre = nombreValor === "" || consulta.nombre.toLowerCase().includes(nombreValor.toLowerCase());
-    const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
-    const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
-    return coincideNombre && coincideCategoria && coincideSede;
-});
+        const coincideNombre = nombreValor === "" || consulta.nombre.toLowerCase().includes(nombreValor.toLowerCase());
+        const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
+        const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
+        return coincideNombre && coincideCategoria && coincideSede;
+    });
 
     filtradas.forEach(consulta => {
         crearMostrarConsulta(consulta, "contenedorFiltro")
@@ -160,7 +165,7 @@ async function mostrarEstadisticas() {
     const tresDiasAtras = new Date()
     tresDiasAtras.setDate(hoy.getDate() - 3)
 
-    const revisadasUltimos3Dias = consultasResueltas.reduce(function(acc, consulta) {
+    const revisadasUltimos3Dias = consultasResueltas.reduce(function (acc, consulta) {
         const fechaConsulta = convertirFecha(consulta.fecha)
         if (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) {
             return acc + 1
@@ -170,13 +175,13 @@ async function mostrarEstadisticas() {
 
     const totalPorRevisar = consultas.length
 
-    const solicitudesPorSede = [...consultas, ...consultasResueltas].reduce(function(acc, consulta) {
+    const solicitudesPorSede = [...consultas, ...consultasResueltas].reduce(function (acc, consulta) {
         const sede = consulta.sede
         acc[sede] = (acc[sede] || 0) + 1
         return acc
     }, {})
 
-    const solicitudesPorCategoria = [...consultas, ...consultasResueltas].reduce(function(acc, consulta) {
+    const solicitudesPorCategoria = [...consultas, ...consultasResueltas].reduce(function (acc, consulta) {
         const categoria = consulta.categoria
         acc[categoria] = (acc[categoria] || 0) + 1
         return acc
@@ -198,14 +203,14 @@ async function mostrarEstadisticas() {
     pPorRevisar.textContent = "Solicitudes por revisar: " + totalPorRevisar
     mostrarDatos.appendChild(pPorRevisar)
 
-    Object.keys(solicitudesPorSede).forEach(function(sede) {
+    Object.keys(solicitudesPorSede).forEach(function (sede) {
         const cantidad = solicitudesPorSede[sede]
         const pSede = document.createElement("p")
         pSede.textContent = 'Solicitudes en sede "' + sede + '": ' + cantidad
         mostrarDatos.appendChild(pSede)
     })
 
-    Object.keys(solicitudesPorCategoria).forEach(function(categoria) {
+    Object.keys(solicitudesPorCategoria).forEach(function (categoria) {
         const cantidad = solicitudesPorCategoria[categoria]
         const pCategoria = document.createElement("p")
         pCategoria.textContent = 'Solicitudes en categoría "' + categoria + '": ' + cantidad
@@ -215,33 +220,57 @@ async function mostrarEstadisticas() {
 
 //Esto es para registrar usuarios
 async function registrarUsuario(letra) {
-    const nombreCompleto = nombreInput.value + " " + apellidoInput.value
-    const usuarios = await obtenerDatos("usuarios")
-    const contadores = usuarios.find(u => u.id === "0")
+    const nombreCompleto = nombreInput.value.trim() + " " + apellidoInput.value.trim()
+    const contrasena = contrasenaInput.value.trim()
+    const sede = sedeSelect.value.trim()
+
+    // Verifica que todos los campos estén llenos
+    if (!nombreInput.value.trim() || !apellidoInput.value.trim() || !contrasena || !sede) {
+        alert("Por favor, complete todos los campos antes de registrar el usuario")//Cambiar esto por un mensaje -----------------
+        return
+    }
+
+    const usuarios = await obtenerDatos("usuarios");
+    const contadores = usuarios.find(u => u.id === "0");
 
     if (letra === "p") {
-        const nuevoId = letra + "fwd" + contadores.contadorProfesores
+        const contador = parseInt(contadores.contadorProfesores);
+        const contadorFormateado = contador < 10 ? "0" + contador : String(contador);
+        const nuevoId = letra + "fwd" + contadorFormateado;
+
         const nuevoUsuario = {
             id: nuevoId,
             nombre: nombreCompleto,
-            contrasena: contrasenaInput.value,
-            sede: sedeSelect.value
-        }
-        await createData("usuarios", nuevoUsuario)
-        const nuevoValor = parseInt(contadores.contadorProfesores) +1
-        contadores.contadorProfesores = JSON.stringify(nuevoValor)
-        await updateData("usuarios", contadores)
+            contrasena: contrasena,
+            sede: sede
+        };
+
+        await createData("usuarios", nuevoUsuario);
+
+        const nuevoValor = contador + 1;
+        contadores.contadorProfesores = String(nuevoValor);
+        await updateData("usuarios", contadores.id, contadores);
+
+        limpiar();
     } else if (letra === "e") {
         const nuevoId = letra + "fwd" + contadores.contadorEstudiantes
         const nuevoUsuario = {
             id: nuevoId,
             nombre: nombreCompleto,
-            contrasena: contrasenaInput.value,
-            sede: sedeSelect.value
+            contrasena: contrasena,
+            sede: sede
         }
         await createData("usuarios", nuevoUsuario)
-        const nuevoValor = parseInt(contadores.contadorEstudiantes) +1
-        contadores.contadorEstudiantes = JSON.stringify(nuevoValor)
+        const nuevoValor = parseInt(contadores.contadorEstudiantes) + 1
+        contadores.contadorEstudiantes = String(nuevoValor)
         await updateData("usuarios", contadores.id, contadores)
+        limpiar()
     }
+}
+
+function limpiar() {
+    nombreInput.value = "";
+    apellidoInput.value = "";
+    contrasenaInput.value = "";
+    sedeSelect.selectedIndex = 0;
 }

@@ -11,10 +11,14 @@ async function validarLogin(e) {
     //Recuperación de datos
     const idInput = document.getElementById("idLogin").value.trim().toLowerCase()
     const passwordInput = document.getElementById("passwordLogin").value.trim()
+    const mensaje = document.getElementById("mensaje")
 
     //Validación de espacios completos
     if (!idInput || !passwordInput) {
-        console.warn("Por favor, ingrese nombre y contraseña")
+        mensaje.textContent = "Por favor, ingrese nombre y contraseña"
+        setTimeout(() => {
+            mensaje.textContent = ""
+        }, 1500);
         return
     }
 
@@ -37,10 +41,10 @@ async function validarLogin(e) {
     } else {
         console.warn("Usuario o contraseña incorrectos")
         const mensaje = document.getElementById("mensaje")
-
-        const contenidoMensaje = document.createElement("p")
-        contenidoMensaje.textContent = "Usuario o contraseña incorrectos"
-        mensaje.appendChild(contenidoMensaje)
+        mensaje.textContent = "Usuario o contraseña incorrectos"
+        setTimeout(() => {
+            mensaje.textContent = ""
+        }, 1500);
     }
 }
 
