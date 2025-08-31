@@ -578,6 +578,26 @@
       "descripcion": "dsddkcdsñfkjdsklfdslkfmlskmflkdsmf",
       "sede": "La Capri",
       "estado": "Resuelta"
+    },
+    {
+      "id": "1c9a",
+      "nombre": "Ismael Marin",
+      "hora": "22:34:14",
+      "fecha": "30/08/2025",
+      "categoria": "react",
+      "descripcion": "hola react",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "e2d4",
+      "nombre": "Ismael Marin",
+      "hora": "23:06:41",
+      "fecha": "30/08/2025",
+      "categoria": "jsonserver",
+      "descripcion": "prueba json",
+      "sede": "La Capri",
+      "estado": "Resuelta"
     }
   ]
 }
