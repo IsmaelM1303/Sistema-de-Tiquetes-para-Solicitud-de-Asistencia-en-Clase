@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/IsmaelM1303/Sistema-de-Tiquetes-para-Solicitud-de-Asistencia-en-Clase#readme",
   "dependencies": {
+    "chart.js": "^4.5.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
