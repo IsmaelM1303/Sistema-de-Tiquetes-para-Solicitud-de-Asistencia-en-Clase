@@ -135,6 +135,10 @@ export async function actualizarLista() {
 function nuevaConsulta() {
     const categoriaConsulta = document.getElementById("categoriaConsulta")
     const descripcionConsulta = document.getElementById("descripcionConsulta")
+
+    if (categoriaConsulta.value.trim() == "" || descripcionConsulta.value.trim() == "") {
+        return
+    }
     //Saco la hora y la fecha
 const ahora = new Date()
 

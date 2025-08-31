@@ -408,32 +408,12 @@
       "estado": "Sin resolver"
     },
     {
-      "id": "1273",
-      "nombre": "Ismael Marin",
-      "hora": "18:42:35",
-      "fecha": "30/08/2025",
-      "categoria": "",
-      "descripcion": "",
-      "sede": "La Capri",
-      "estado": "Sin resolver"
-    },
-    {
       "id": "10c6",
       "nombre": "Ismael Marin",
       "hora": "18:45:00",
       "fecha": "30/08/2025",
       "categoria": "github",
       "descripcion": "no conecta el repositorio",
-      "sede": "La Capri",
-      "estado": "Sin resolver"
-    },
-    {
-      "id": "43d9",
-      "nombre": "Ismael Marin",
-      "hora": "18:45:01",
-      "fecha": "30/08/2025",
-      "categoria": "",
-      "descripcion": "",
       "sede": "La Capri",
       "estado": "Sin resolver"
     },
@@ -494,6 +474,46 @@
       "fecha": "30/08/2025",
       "categoria": "otro",
       "descripcion": "Prueba mensaje 4",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "d20a",
+      "nombre": "Ismael Marin",
+      "hora": "21:39:22",
+      "fecha": "30/08/2025",
+      "categoria": "react",
+      "descripcion": "prueba react",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "8b33",
+      "nombre": "Ismael Marin",
+      "hora": "21:39:30",
+      "fecha": "30/08/2025",
+      "categoria": "python",
+      "descripcion": "Prueba Python",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "f00e",
+      "nombre": "Ismael Marin",
+      "hora": "22:16:41",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "9f00",
+      "nombre": "Ismael Marin",
+      "hora": "22:17:16",
+      "fecha": "30/08/2025",
+      "categoria": "nodejs",
+      "descripcion": "",
       "sede": "La Capri",
       "estado": "Sin resolver"
     }

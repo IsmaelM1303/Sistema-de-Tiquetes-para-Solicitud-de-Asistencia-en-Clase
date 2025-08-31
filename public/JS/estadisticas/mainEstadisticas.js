@@ -44,6 +44,7 @@ async function obtenerDatos(tabla) {
         return []
     }
 }
+
 //Esto es para que las consultas que se impriman solo lo hagan bajo el estandar esperado
 export async function actualizarLista() {
     const contenedorTodas = document.getElementById("contenedorTodas")
@@ -72,6 +73,7 @@ export async function actualizarLista() {
         console.error("Ocurrió un error al mostrar los marcadores:", error)
     }
 }
+
 //Esto es para escribir texto
 function texto(id, contenido) {
     const contenedor = document.getElementById(id)
@@ -79,6 +81,7 @@ function texto(id, contenido) {
     texto.textContent = contenido
     contenedor.appendChild(texto)
 }
+
 //Esto es para que se impriman las consultas
 function crearMostrarConsulta(consulta, contenedor) {
     const contenedorTodas = document.getElementById(contenedor)
@@ -132,11 +135,11 @@ async function aplicarFiltros() {
     const lista = revisadasValor === "Resuelta" ? consultasCompletas : consultas
 
     const filtradas = lista.filter(consulta => {
-        const coincideNombre = nombreValor === "" || consulta.nombre.toLowerCase().includes(nombreValor.toLowerCase());
-        const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor;
-        const coincideSede = sedeValor === "" || consulta.sede === sedeValor;
-        return coincideNombre && coincideCategoria && coincideSede;
-    });
+        const coincideNombre = nombreValor === "" || consulta.nombre?.toLowerCase().includes(nombreValor.toLowerCase())
+        const coincideCategoria = categoriaValor === "" || consulta.categoria === categoriaValor
+        const coincideSede = sedeValor === "" || consulta.sede === sedeValor
+        return coincideNombre && coincideCategoria && coincideSede
+    })
 
     filtradas.forEach(consulta => {
         crearMostrarConsulta(consulta, "contenedorFiltro")
@@ -153,7 +156,11 @@ function convertirFecha(fechaStr) {
 
 // Esto es para que se muestren las estadísticas
 async function mostrarEstadisticas() {
-    mostrarDatos.innerHTML = ""
+    // Limpia el contenedor y agrega los canvas
+    mostrarDatos.innerHTML = `
+        <canvas id="graficoResumen" width="400" height="200"></canvas>
+        <canvas id="graficoCategorias" width="400" height="200"></canvas>
+    `
 
     const consultas = await obtenerDatos("consultas")
     const consultasResueltas = await obtenerDatos("consultasResueltas")
@@ -165,57 +172,90 @@ async function mostrarEstadisticas() {
     const tresDiasAtras = new Date()
     tresDiasAtras.setDate(hoy.getDate() - 3)
 
-    const revisadasUltimos3Dias = consultasResueltas.reduce(function (acc, consulta) {
+    const revisadasUltimos3Dias = consultasResueltas.reduce((acc, consulta) => {
         const fechaConsulta = convertirFecha(consulta.fecha)
-        if (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) {
-            return acc + 1
-        }
-        return acc
+        return (fechaConsulta >= tresDiasAtras && fechaConsulta <= hoy) ? acc + 1 : acc
     }, 0)
 
     const totalPorRevisar = consultas.length
 
-    const solicitudesPorSede = [...consultas, ...consultasResueltas].reduce(function (acc, consulta) {
-        const sede = consulta.sede
-        acc[sede] = (acc[sede] || 0) + 1
-        return acc
-    }, {})
-
-    const solicitudesPorCategoria = [...consultas, ...consultasResueltas].reduce(function (acc, consulta) {
+    const solicitudesPorCategoria = [...consultas, ...consultasResueltas].reduce((acc, consulta) => {
         const categoria = consulta.categoria
         acc[categoria] = (acc[categoria] || 0) + 1
         return acc
     }, {})
 
-    const pTotal = document.createElement("p")
-    pTotal.textContent = "Solicitudes totales: " + totalSolicitudes
-    mostrarDatos.appendChild(pTotal)
-
-    const pRevisadas = document.createElement("p")
-    pRevisadas.textContent = "Solicitudes revisadas: " + totalRevisadas
-    mostrarDatos.appendChild(pRevisadas)
-
-    const pRevisadas3Dias = document.createElement("p")
-    pRevisadas3Dias.textContent = "Solicitudes revisadas (últimos 3 días): " + revisadasUltimos3Dias
-    mostrarDatos.appendChild(pRevisadas3Dias)
-
-    const pPorRevisar = document.createElement("p")
-    pPorRevisar.textContent = "Solicitudes por revisar: " + totalPorRevisar
-    mostrarDatos.appendChild(pPorRevisar)
-
-    Object.keys(solicitudesPorSede).forEach(function (sede) {
-        const cantidad = solicitudesPorSede[sede]
-        const pSede = document.createElement("p")
-        pSede.textContent = 'Solicitudes en sede "' + sede + '": ' + cantidad
-        mostrarDatos.appendChild(pSede)
+    // Gráfico de barras: resumen de solicitudes
+    const ctxResumen = document.getElementById("graficoResumen").getContext("2d")
+    new Chart(ctxResumen, {
+        type: "bar",
+        data: {
+            labels: ["Totales", "Revisadas", "Revisadas (3 días)", "Por revisar"],
+            datasets: [{
+                label: "Solicitudes",
+                data: [totalSolicitudes, totalRevisadas, revisadasUltimos3Dias, totalPorRevisar],
+                backgroundColor: [
+                    "#662D91", // morado
+                    "#008FD4", // azul
+                    "#F7901E", // naranja
+                    "#FDCA06"  // amarillo
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Resumen de Solicitudes"
+                }
+            }
+        }
     })
 
-    Object.keys(solicitudesPorCategoria).forEach(function (categoria) {
-        const cantidad = solicitudesPorCategoria[categoria]
-        const pCategoria = document.createElement("p")
-        pCategoria.textContent = 'Solicitudes en categoría "' + categoria + '": ' + cantidad
-        mostrarDatos.appendChild(pCategoria)
+    // Gráfico de pastel: solicitudes por categoría
+    const ctxCategorias = document.getElementById("graficoCategorias").getContext("2d")
+    const categoriaColors = [
+        "#662D91", "#EC008C", "#4D4D4D", "#F7901E", "#FDCA06", "#008FD4", "#20BEC6"
+    ]
+    const categoriasLabels = Object.keys(solicitudesPorCategoria)
+
+    const chartCategorias = new Chart(ctxCategorias, {
+        type: "pie",
+        data: {
+            labels: categoriasLabels,
+            datasets: [{
+                label: "Categorías",
+                data: Object.values(solicitudesPorCategoria),
+                backgroundColor: categoriasLabels.map((_, i) =>
+                    categoriaColors[i % categoriaColors.length]
+                )
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Distribución por Categoría"
+                }
+            }
+        }
     })
+
+    // Evento para seleccionar categoría en el gráfico y aplicar filtros
+    document.getElementById("graficoCategorias").onclick = function (evt) {
+        const activePoints = chartCategorias.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true)
+        if (activePoints.length > 0) {
+            const idx = activePoints[0].index
+            const categoriaSeleccionada = chartCategorias.data.labels[idx]
+            // Si la opción seleccionada es la que tiene id "sinCategoria", no hacer nada
+            const opcionSinCategoria = categoriaConsulta.querySelector('#sinCategoria')
+            if (opcionSinCategoria && opcionSinCategoria.value === categoriaSeleccionada) return
+            categoriaConsulta.value = categoriaSeleccionada
+            aplicarFiltros()
+        }
+    }
 }
 
 //Esto es para registrar usuarios
@@ -226,32 +266,32 @@ async function registrarUsuario(letra) {
 
     // Verifica que todos los campos estén llenos
     if (!nombreInput.value.trim() || !apellidoInput.value.trim() || !contrasena || !sede) {
-        alert("Por favor, complete todos los campos antes de registrar el usuario")//Cambiar esto por un mensaje -----------------
+        alert("Por favor, complete todos los campos antes de registrar el usuario") //Cambiar esto por un mensaje -----------------
         return
     }
 
-    const usuarios = await obtenerDatos("usuarios");
-    const contadores = usuarios.find(u => u.id === "0");
+    const usuarios = await obtenerDatos("usuarios")
+    const contadores = usuarios.find(u => u.id === "0")
 
     if (letra === "p") {
-        const contador = parseInt(contadores.contadorProfesores);
-        const contadorFormateado = contador < 10 ? "0" + contador : String(contador);
-        const nuevoId = letra + "fwd" + contadorFormateado;
+        const contador = parseInt(contadores.contadorProfesores)
+        const contadorFormateado = contador < 10 ? "0" + contador : String(contador)
+        const nuevoId = letra + "fwd" + contadorFormateado
 
         const nuevoUsuario = {
             id: nuevoId,
             nombre: nombreCompleto,
             contrasena: contrasena,
             sede: sede
-        };
+        }
 
-        await createData("usuarios", nuevoUsuario);
+        await createData("usuarios", nuevoUsuario)
 
-        const nuevoValor = contador + 1;
-        contadores.contadorProfesores = String(nuevoValor);
-        await updateData("usuarios", contadores.id, contadores);
+        const nuevoValor = contador + 1
+        contadores.contadorProfesores = String(nuevoValor)
+        await updateData("usuarios", contadores.id, contadores)
 
-        limpiar();
+        limpiar()
     } else if (letra === "e") {
         const nuevoId = letra + "fwd" + contadores.contadorEstudiantes
         const nuevoUsuario = {
@@ -269,8 +309,8 @@ async function registrarUsuario(letra) {
 }
 
 function limpiar() {
-    nombreInput.value = "";
-    apellidoInput.value = "";
-    contrasenaInput.value = "";
-    sedeSelect.selectedIndex = 0;
+    nombreInput.value = ""
+    apellidoInput.value = ""
+    contrasenaInput.value = ""
+    sedeSelect.selectedIndex = 0
 }

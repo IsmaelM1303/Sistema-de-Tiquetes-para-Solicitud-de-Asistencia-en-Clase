@@ -54,7 +54,7 @@ main {
     overflow-y: auto;
 }
 
-/* Áreas superiores */
+/* Contenedores superiores */
 #contenedorFiltros,
 #agregarPersonal,
 #mostrarDatos {
@@ -67,6 +67,8 @@ main {
     gap: 0.75rem;
     height: 60vh;
     overflow-y: auto;
+    overflow-x: hidden;
+    width: auto;
 }
 
 #contenedorFiltros {
@@ -81,7 +83,7 @@ main {
     grid-area: contenedorDatos;
 }
 
-/* Áreas inferiores con scroll */
+/* Contenedores inferiores */
 #contenedorTodas,
 #contenedorFiltro,
 #contenedorCompletas {
@@ -101,7 +103,7 @@ main {
     grid-area: contenedorCompletas;
 }
 
-/* Estilo para cada consulta */
+/* Tarjetas de consulta */
 #contenedorTodas>div,
 #contenedorFiltro>div,
 #contenedorCompletas>div {
@@ -117,7 +119,7 @@ main {
     margin-bottom: 1rem;
 }
 
-/* Campos de formulario */
+/* Formularios */
 #contenedorFiltros div,
 #agregarPersonal div {
     display: flex;
@@ -143,7 +145,6 @@ select {
     font-size: 0.95rem;
     font-family: 'Lora', 'Inter', serif;
     width: 100%;
-    max-width: 100%;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
@@ -171,8 +172,6 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
-    width: fit-content;
-    max-width: 100%;
 }
 
 button:hover {
@@ -186,66 +185,39 @@ p {
     color: var(--gris-oscuro);
     margin-bottom: 0.4rem;
     line-height: 1.4;
-    white-space: normal;
     word-break: break-word;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  main {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "agregarPersonal"
-      "contenedorFiltros"
-      "contenedorFiltro"
-      "mostrarDatos"
-      "contenedorTodas"
-      "contenedorCompletas";
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  header h1 {
-    font-size: 1.4rem;
-  }
-
-  #agregarPersonal {
-    grid-area: agregarPersonal;
-    height: 80vh;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  #contenedorFiltros {
-    grid-area: contenedorFiltros;
-    height: 80vh;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  #contenedorFiltro {
-    grid-area: contenedorFiltro;
-    height: 80vh;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  #mostrarDatos {
-    grid-area: mostrarDatos;
-    height: 80vh;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  #contenedorTodas,
-  #contenedorCompletas {
+/* Gráficos Chart.js */
+#mostrarDatos canvas {
+    background-color: var(--gris-claro);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(32, 190, 198, 0.08);
+    padding: 0.5rem;
+    max-width: 100%;
     height: auto;
-    max-height: none;
-  }
 }
 
+#mostrarDatos .tituloEstadisticas {
+    font-size: 1.6rem;
+    color: var(--morado);
+    font-family: 'Oswald', Arial, sans-serif;
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
 
-/* Scroll personalizado para navegadores WebKit (Chrome, Edge, Safari) */
+#mostrarDatos .subtituloEstadisticas {
+    font-size: 1.1rem;
+    color: var(--azul);
+    font-family: 'Oswald', Arial, sans-serif;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* Scroll personalizado */
 *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -266,8 +238,38 @@ p {
     background-color: var(--rosa);
 }
 
-/* Scroll para Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: var(--turquesa) var(--gris-claro);
 }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas:
+            "agregarPersonal"
+            "contenedorFiltros"
+            "contenedorDatos"
+            "contenedorFiltro"
+            "contenedorCompletas"
+            "contenedorTodas";
+    }
+
+    #contenedorFiltros,
+    #agregarPersonal,
+    #mostrarDatos,
+    #contenedorTodas,
+    #contenedorFiltro,
+    #contenedorCompletas {
+        height: 70vh;
+    }
+
+    #mostrarDatos canvas {
+        max-height: 60vh;
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+

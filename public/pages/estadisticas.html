@@ -23,7 +23,7 @@
             <div>
                 <label>Filtro por categoría</label>
                 <select id="categoriaConsulta" name="tecnologia">
-                    <option value="" selected>Seleccionar categoría</option>
+                    <option value="" selected id="sinCategoria">Seleccionar categoría</option>
                     <option value="javascript">JavaScript</option>
                     <option value="css">CSS</option>
                     <option value="html">HTML</option>
@@ -81,14 +81,17 @@
             </div>
         </div>
 
-        <div id="mostrarDatos"></div>
+        <div id="mostrarDatos">
+            <canvas id="graficoResumen" width="400" height="200"></canvas>
+            <canvas id="graficoCategorias" width="400" height="200"></canvas>
+        </div>
         <div id="contenedorTodas"></div>
         <div id="contenedorFiltro"></div>
         <div id="contenedorCompletas"></div>
 
 
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="../JS/estadisticas/mainEstadisticas.js"></script>
 </body>
 
