@@ -28,6 +28,10 @@ body {
     overflow: hidden;
 }
 
+h2{
+    color: var(--gris-oscuro);
+}
+
 header {
     grid-area: header;
     background-color: var(--morado);

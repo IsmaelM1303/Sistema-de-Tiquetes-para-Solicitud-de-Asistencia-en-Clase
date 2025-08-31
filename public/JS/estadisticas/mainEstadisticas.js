@@ -55,7 +55,7 @@ export async function actualizarLista() {
         contenedorTodas.innerHTML = ""
         texto("contenedorTodas", "Todas las consultas")
         texto("contenedorFiltro", "Consultas por filtro")
-        texto("contenedorCompletas", "Consultas completadas")
+        texto("contenedorCompletas", "Consultas resueltas")
         consultas.forEach(consulta => {
             crearMostrarConsulta(consulta, "contenedorTodas")
         })
