@@ -1,19 +1,92 @@
+:root {
+    --morado: #662D91;
+    --rosa: #EC008C;
+    --gris-oscuro: #4D4D4D;
+    --naranja: #F7901E;
+    --amarillo: #FDCA06;
+    --azul: #008FD4;
+    --turquesa: #20BEC6;
+    --gris-claro: #EFEFEF;
+    --blanco: #FFFFFF;
+}
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    font-family: 'Oswald', 'Lora', 'Inter', sans-serif;
+    background-color: var(--gris-claro);
     display: grid;
-    grid-template-rows: 1fr 6fr;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
         "header"
-        "main"
-    ;
+        "main";
+    height: 100vh;
+    overflow: hidden;
 }
-/*Grid areas para que funcionen*/
+
+header {
+    grid-area: header;
+    background-color: var(--morado);
+    color: var(--gris-claro);
+    padding: 0.75rem 2rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "contenedorDatos contenedorFiltros agregarPersonal"
+        "contenedorTodas contenedorFiltro contenedorCompletas";
+    gap: 1.5rem;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Áreas superiores */
+#contenedorFiltros,
+#agregarPersonal,
+#mostrarDatos {
+    background-color: var(--blanco);
+    border-radius: 8px;
+    padding: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 143, 212, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 60vh;
+    overflow-y: auto;
+}
+
 #contenedorFiltros {
     grid-area: contenedorFiltros;
+}
+
+#agregarPersonal {
+    grid-area: agregarPersonal;
+}
+
+#mostrarDatos {
+    grid-area: contenedorDatos;
+}
+
+/* Áreas inferiores con scroll */
+#contenedorTodas,
+#contenedorFiltro,
+#contenedorCompletas {
+    height: 60vh;
+    overflow-y: scroll;
 }
 
 #contenedorTodas {
@@ -27,18 +100,174 @@ body {
 #contenedorCompletas {
     grid-area: contenedorCompletas;
 }
-#contenedorDatos{
-    grid-area: contenedorDatos;
+
+/* Estilo para cada consulta */
+#contenedorTodas>div,
+#contenedorFiltro>div,
+#contenedorCompletas>div {
+    background: var(--gris-claro);
+    border: 2px solid var(--turquesa);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 1px 4px rgba(32, 190, 198, 0.04);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    margin-bottom: 1rem;
 }
 
-#agregarPersonal{
-    grid-area: agregarPersonal;
+/* Campos de formulario */
+#contenedorFiltros div,
+#agregarPersonal div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+
+label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gris-oscuro);
+    margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    padding: 0.4rem 0.6rem;
+    border: 1.5px solid var(--turquesa);
+    border-radius: 6px;
+    background-color: var(--gris-claro);
+    color: var(--gris-oscuro);
+    font-size: 0.95rem;
+    font-family: 'Lora', 'Inter', serif;
+    width: 100%;
+    max-width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--rosa);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(236, 0, 140, 0.15);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.1);
+    margin-top: 0.3rem;
+}
+
+/* Botones */
+button {
+    background-color: var(--azul);
+    color: var(--blanco);
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: fit-content;
+    max-width: 100%;
+}
+
+button:hover {
+    background-color: var(--rosa);
+}
+
+/* Párrafos */
+p {
+    font-size: 0.95rem;
+    font-family: 'Lora', 'Inter', serif;
+    color: var(--gris-oscuro);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
     grid-template-areas:
-        "contenedorDatos contenedorFiltros agregarPersonal"
-        "contenedorTodas contenedorFiltro contenedorCompletas"
-    ;
+      "agregarPersonal"
+      "contenedorFiltros"
+      "contenedorFiltro"
+      "mostrarDatos"
+      "contenedorTodas"
+      "contenedorCompletas";
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  #agregarPersonal {
+    grid-area: agregarPersonal;
+    height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #contenedorFiltros {
+    grid-area: contenedorFiltros;
+    height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #contenedorFiltro {
+    grid-area: contenedorFiltro;
+    height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #mostrarDatos {
+    grid-area: mostrarDatos;
+    height: 80vh;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  #contenedorTodas,
+  #contenedorCompletas {
+    height: auto;
+    max-height: none;
+  }
+}
+
+
+/* Scroll personalizado para navegadores WebKit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--gris-claro);
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--turquesa);
+    border-radius: 4px;
+    border: 2px solid var(--gris-claro);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--rosa);
+}
+
+/* Scroll para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--turquesa) var(--gris-claro);
 }

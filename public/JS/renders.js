@@ -40,6 +40,7 @@ function crearMostrarEstudiante(consulta) {
 }
 
 function crearMostrarProfesor(consulta) {
+
     const contenedor = document.createElement("div")
     contenedor.classList.add("consulta")
 
@@ -67,41 +68,42 @@ function crearMostrarProfesor(consulta) {
     fecha.textContent = "Fecha de la consulta: " + consulta.fecha
     fecha.classList.add("dato", "texto-consulta")
     grupoFecha.appendChild(fecha)
+const grupoCategoria = document.createElement("div")
+grupoCategoria.classList.add("grupo-categoria") // opcional si quieres modular
 
-    const grupoCategoria = document.createElement("div")
+const labelCategoria = document.createElement("label")
+labelCategoria.htmlFor = "categoria-" + consulta.id
+labelCategoria.textContent = "Categoría"
 
-    const labelCategoria = document.createElement("label")
-    labelCategoria.htmlFor = "categoria-" + consulta.id
-    labelCategoria.textContent = "Categoría"
+const selectCategoria = document.createElement("select")
+selectCategoria.id = "categoria-" + consulta.id
+selectCategoria.name = "tecnologia"
+selectCategoria.classList.add("dato", "input-consulta")
 
-    const selectCategoria = document.createElement("select")
-    selectCategoria.id = "categoria-" + consulta.id
-    selectCategoria.name = "tecnologia"
-    selectCategoria.classList.add("dato", "input-consulta")
+const opciones = [
+  { value: "", text: "Seleccionar categoría", disabled: true, selected: true },
+  { value: "javascript", text: "JavaScript" },
+  { value: "css", text: "CSS" },
+  { value: "html", text: "HTML" },
+  { value: "nodejs", text: "Node.js" },
+  { value: "jsonserver", text: "json-server" },
+  { value: "react", text: "React" },
+  { value: "python", text: "Python" },
+  { value: "github", text: "GitHub" },
+  { value: "otro", text: "Otro" }
+]
 
-    const opciones = [
-        { value: "", text: "Seleccionar categoría", disabled: true, selected: true },
-        { value: "javascript", text: "JavaScript" },
-        { value: "css", text: "CSS" },
-        { value: "html", text: "HTML" },
-        { value: "nodejs", text: "Node.js" },
-        { value: "jsonserver", text: "json-server" },
-        { value: "react", text: "React" },
-        { value: "python", text: "Python" },
-        { value: "github", text: "GitHub" },
-        { value: "otro", text: "Otro" }
-    ]
+opciones.forEach(op => {
+  const option = document.createElement("option")
+  option.value = op.value
+  option.textContent = op.text
+  if (op.disabled) option.disabled = true
+  if (op.selected || op.value === consulta.categoria) option.selected = true
+  selectCategoria.appendChild(option)
+})
 
-    opciones.forEach(op => {
-        const option = document.createElement("option")
-        option.value = op.value
-        option.textContent = op.text
-        if (op.disabled) option.disabled = true
-        if (op.selected || op.value === consulta.categoria) option.selected = true
-        selectCategoria.appendChild(option)
-    })
+grupoCategoria.append(labelCategoria, selectCategoria)
 
-    grupoCategoria.append(labelCategoria, selectCategoria)
 
     const labelDescripcion = document.createElement("label")
     labelDescripcion.htmlFor = "descripcion-" + consulta.id

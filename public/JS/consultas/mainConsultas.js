@@ -5,12 +5,12 @@ import { crearMostrarEstudiante, crearMostrarProfesor } from "../renders.js"
 const usuarioRaw = localStorage.getItem("Usuario");
 const usuario = usuarioRaw ? JSON.parse(usuarioRaw) : null;
 
+const mensajeConfirmacion = document.getElementById("mensajeConfirmacion")
 if (localStorage.getItem("Usuario") !== "") {
     const nombreUsuario = document.getElementById("nombreUsuario")
 
 nombreUsuario.textContent = "Inició sesión como: " + usuario.nombre + " | Sede: " + usuario.sede
 
-const mensajeConfirmacion = document.getElementById("mensajeConfirmacion")
 const contenedorConsultas = document.getElementById("contenedorConsultas")
 
     if (usuario.id.includes("p")) {
@@ -78,13 +78,10 @@ const contenedorConsultas = document.getElementById("contenedorConsultas")
         boton.id = "btnCrearConsulta"
         boton.textContent = "Crear consulta"
 
-        const mensaje = document.createElement("p")
-        mensaje.id = "mensajeConfirmacion"
 
         contenedorAgregar.appendChild(divCategoria)
         contenedorAgregar.appendChild(divDescripcion)
         contenedorAgregar.appendChild(boton)
-        contenedorAgregar.appendChild(mensaje)
 
         document.getElementById("btnCerrarSesion").addEventListener("click", cerrarSesion)
         document.getElementById("btnCrearConsulta").addEventListener("click", nuevaConsulta)

@@ -139,3 +139,118 @@ main {
 #btnInicioSesion:hover{
     background-color: #008FD4;
 }
+
+
+@media screen and (max-width: 768px) {
+    body {
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow-x: hidden;
+    }
+
+    header {
+        font-size: 115%;
+        flex-direction: column;
+        margin-top: 4%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #logoForward {
+        width: 7cap;
+        bottom: 1cap;
+        right: 6cap; /* Más a la izquierda */
+    }
+
+    main {
+        margin-top: 4%;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #contenedorFormulario {
+        width: 85%;
+        max-width: 400px;
+        height: auto;
+        padding: 2cap 0;
+        border-radius: 2cap;
+        box-sizing: border-box;
+    }
+
+    #contenedorFormulario div {
+        width: 100%;
+        margin-top: 6%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #contenedorFormulario div label {
+        font-size: 125%;
+    }
+
+    #contenedorFormulario div input {
+        font-size: 110%;
+        padding: 4%;
+    }
+
+    #contenedorFormulario p {
+        font-size: 110%;
+    }
+
+    #btnInicioSesion {
+        width: 55%;
+        padding: 3.5%;
+        font-size: 105%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow-x: hidden;
+    }
+
+    header {
+        font-size: 105%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #logoForward {
+        width: 6cap;
+        right: 8cap; /* Más a la izquierda aún */
+    }
+
+    main {
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #contenedorFormulario {
+        width: 90%;
+        max-width: 350px;
+        padding: 1.5cap 0;
+    }
+
+    #contenedorFormulario div label {
+        font-size: 115%;
+    }
+
+    #contenedorFormulario div input {
+        font-size: 100%;
+    }
+
+    #btnInicioSesion {
+        width: 65%;
+        font-size: 100%;
+    }
+}

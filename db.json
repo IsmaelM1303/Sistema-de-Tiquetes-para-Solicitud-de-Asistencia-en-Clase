@@ -2,7 +2,7 @@
   "usuarios": [
     {
       "id": "0",
-      "contadorEstudiantes": "27",
+      "contadorEstudiantes": "48",
       "contadorProfesores": "2"
     },
     {
@@ -172,6 +172,138 @@
       "nombre": "Brandon Vargas",
       "contrasena": "123456789",
       "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd27",
+      "nombre": "Carlet Cruz",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd28",
+      "nombre": "Douglas Villagra",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd29",
+      "nombre": "Dylan Sánchez",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd30",
+      "nombre": "Dylan Quiros",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd31",
+      "nombre": "Emanuel Alvarado",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd32",
+      "nombre": "Emmanuel Ruiz",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd33",
+      "nombre": "Germán Peña",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd34",
+      "nombre": "Luis Blandon",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd35",
+      "nombre": "Luis Torres",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd36",
+      "nombre": "Madelin Martínez",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd37",
+      "nombre": "María Arguijo",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd38",
+      "nombre": "Martha Vargas",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd39",
+      "nombre": "Miranda Mendez",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd40",
+      "nombre": "Naidelyn Rios",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd41",
+      "nombre": "Nora Figueroa",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd42",
+      "nombre": "Nyghell Castillo",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd43",
+      "nombre": "Ramsell Solano",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd44",
+      "nombre": "Reychel Fallas",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd44",
+      "nombre": "Roger Chavarría",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd45",
+      "nombre": "Sara Vélez",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd46",
+      "nombre": "Sergio Aguirre",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
+    },
+    {
+      "id": "efwd47",
+      "nombre": "Douglas Villagra",
+      "contrasena": "1234",
+      "sede": "Puntarenas"
     }
   ],
   "consultas": [
@@ -244,6 +376,126 @@
       "descripcion": "Problema js",
       "sede": "La Capri",
       "estado": "Sin resolver"
+    },
+    {
+      "id": "9bb4",
+      "nombre": "Ismael Marin",
+      "hora": "09:12:23",
+      "fecha": "29/08/2025",
+      "categoria": "css",
+      "descripcion": "No logro hacer responsivo",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "2ae7",
+      "nombre": "Ismael Marin",
+      "hora": "09:13:25",
+      "fecha": "29/08/2025",
+      "categoria": "github",
+      "descripcion": "No se actualiza el github",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "2c9e",
+      "nombre": "Ismael Marin",
+      "hora": "18:42:33",
+      "fecha": "30/08/2025",
+      "categoria": "jsonserver",
+      "descripcion": "no conecta",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "1273",
+      "nombre": "Ismael Marin",
+      "hora": "18:42:35",
+      "fecha": "30/08/2025",
+      "categoria": "",
+      "descripcion": "",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "10c6",
+      "nombre": "Ismael Marin",
+      "hora": "18:45:00",
+      "fecha": "30/08/2025",
+      "categoria": "github",
+      "descripcion": "no conecta el repositorio",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "43d9",
+      "nombre": "Ismael Marin",
+      "hora": "18:45:01",
+      "fecha": "30/08/2025",
+      "categoria": "",
+      "descripcion": "",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "7646",
+      "nombre": "Ismael Marin",
+      "hora": "18:45:32",
+      "fecha": "30/08/2025",
+      "categoria": "nodejs",
+      "descripcion": "No llega a mi html",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "8d75",
+      "nombre": "Ismael Marin",
+      "hora": "18:46:02",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "prueba mensaje",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "3b42",
+      "nombre": "Ismael Marin",
+      "hora": "18:47:51",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "prueba mensaje 2",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "b35c",
+      "nombre": "Ismael Marin",
+      "hora": "18:53:30",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "Prueba mensaje 3",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "15ca",
+      "nombre": "Ismael Marin",
+      "hora": "18:54:08",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "Prueba mensaje 4",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
+    },
+    {
+      "id": "ae56",
+      "nombre": "Ismael Marin",
+      "hora": "19:09:47",
+      "fecha": "30/08/2025",
+      "categoria": "otro",
+      "descripcion": "Prueba mensaje 4",
+      "sede": "La Capri",
+      "estado": "Sin resolver"
     }
   ],
   "consultasResueltas": [
@@ -294,6 +546,16 @@
       "fecha": "28/08/2025",
       "categoria": "nodejs",
       "descripcion": "me dice que la dirección no llega",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "bfb5",
+      "nombre": "Ismael Marin",
+      "hora": "14:39:59",
+      "fecha": "30/08/2025",
+      "categoria": "jsonserver",
+      "descripcion": "dsddkcdsñfkjdsklfdslkfmlskmflkdsmf",
       "sede": "La Capri",
       "estado": "Resuelta"
     }
