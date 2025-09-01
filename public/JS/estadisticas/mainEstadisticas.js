@@ -1,6 +1,5 @@
 //Importaciones
 import { getData, createData, updateData } from "../../services/CRUD.js"
-
 //Variables globales
 const filtroNombre = document.getElementById("filtroNombre")
 const categoriaConsulta = document.getElementById("categoriaConsulta")
@@ -195,9 +194,14 @@ function convertirFecha(fechaStr) {
 
 // Esto es para que se muestren las estadísticas
 async function mostrarEstadisticas() {
+    const mostrarDatos = document.getElementById("mostrarDatos")
+
     mostrarDatos.innerHTML = `
         <canvas id="graficoResumen" width="400" height="200"></canvas>
         <canvas id="graficoCategorias" width="400" height="200"></canvas>
+        <div>
+            <button id="btnGenerarReporte">Generar reporte PDF</button>
+        </div>
     `
 
     const consultas = await obtenerDatos("consultas")
@@ -227,7 +231,7 @@ async function mostrarEstadisticas() {
         return acc
     }, {})
 
-    // Gráfico de barras: resumen de solicitudes
+
     const ctxResumen = document.getElementById("graficoResumen").getContext("2d")
     new Chart(ctxResumen, {
         type: "bar",
@@ -236,12 +240,7 @@ async function mostrarEstadisticas() {
             datasets: [{
                 label: "Solicitudes",
                 data: [totalSolicitudes, totalRevisadas, revisadasUltimos3Dias, totalPorRevisar],
-                backgroundColor: [
-                    "#662D91", // morado
-                    "#008FD4", // azul
-                    "#F7901E", // naranja
-                    "#FDCA06"  // amarillo
-                ]
+                backgroundColor: ["#662D91", "#008FD4", "#F7901E", "#FDCA06"]
             }]
         },
         options: {
@@ -255,11 +254,8 @@ async function mostrarEstadisticas() {
         }
     })
 
-    // Gráfico de pastel: solicitudes por categoría
     const ctxCategorias = document.getElementById("graficoCategorias").getContext("2d")
-    const categoriaColors = [
-        "#662D91", "#EC008C", "#4D4D4D", "#F7901E", "#FDCA06", "#008FD4", "#20BEC6"
-    ]
+    const categoriaColors = ["#662D91", "#EC008C", "#4D4D4D", "#F7901E", "#FDCA06", "#008FD4", "#20BEC6"]
     const categoriasLabels = Object.keys(solicitudesPorCategoria)
 
     const chartCategorias = new Chart(ctxCategorias, {
@@ -269,9 +265,7 @@ async function mostrarEstadisticas() {
             datasets: [{
                 label: "Categorías",
                 data: Object.values(solicitudesPorCategoria),
-                backgroundColor: categoriasLabels.map((_, i) =>
-                    categoriaColors[i % categoriaColors.length]
-                )
+                backgroundColor: categoriasLabels.map((_, i) => categoriaColors[i % categoriaColors.length])
             }]
         },
         options: {
@@ -285,20 +279,55 @@ async function mostrarEstadisticas() {
         }
     })
 
-    // Evento para seleccionar categoría en el gráfico y aplicar filtros
-    document.getElementById("graficoCategorias").onclick = function (evt) {
-        const activePoints = chartCategorias.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, true)
-        if (activePoints.length > 0) {
-            const idx = activePoints[0].index
-            const categoriaSeleccionada = chartCategorias.data.labels[idx]
-            // Si la opción seleccionada es la que tiene id "sinCategoria", no hacer nada
-            const opcionSinCategoria = categoriaConsulta.querySelector('#sinCategoria')
-            if (opcionSinCategoria && opcionSinCategoria.value === categoriaSeleccionada) return
-            categoriaConsulta.value = categoriaSeleccionada
-            aplicarFiltros()
+    document.getElementById("graficoCategorias").addEventListener("click", e => {
+        const punto = chartCategorias.getElementsAtEventForMode(e, "nearest", { intersect: true }, true)[0]
+        if (!punto) return
+
+        const label = chartCategorias.data.labels[punto.index]
+        const valor = label.toLowerCase().replace(/\s+/g, "")
+
+        const select = document.getElementById("categoriaConsulta")
+        select.value = valor
+
+        document.getElementById("aplicarFlitros").click()
+    })
+
+
+
+    document.getElementById('btnGenerarReporte').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/generar-pdf', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    resumen: true,
+                    categorias: [
+                        'javascript', 'css', 'html', 'nodejs', 'jsonserver',
+                        'react', 'python', 'github', 'otro'
+                    ]
+                })
+            })
+
+            if (!response.ok) throw new Error('Error al generar el PDF')
+
+            const blob = await response.blob()
+            const url = window.URL.createObjectURL(blob)
+
+            const a = document.createElement('a')
+            a.href = url
+            a.download = 'informe.pdf'
+            a.click()
+        } catch (err) {
+            console.error('❌', err)
         }
-    }
+    })
+
+
+
+
 }
+
+
 
 //Esto es para registrar usuarios
 async function registrarUsuario(letra) {

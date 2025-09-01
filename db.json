@@ -315,7 +315,7 @@
       "categoria": "javascript",
       "descripcion": "No me conecta con el CRUD",
       "sede": "La Capri",
-      "estado": "Sin resolver"
+      "estado": "Resuelta"
     },
     {
       "id": "0004",
@@ -325,27 +325,7 @@
       "categoria": "javascript",
       "descripcion": "No está importando las funciones",
       "sede": "La Capri",
-      "estado": "Sin resolver"
-    },
-    {
-      "id": "0005",
-      "nombre": "Ismael Marin",
-      "hora": "10:03:11",
-      "fecha": "28/08/2025",
-      "categoria": "javascript",
-      "descripcion": "Prueba 345",
-      "sede": "La Capri",
-      "estado": "Sin resolver"
-    },
-    {
-      "id": "0006",
-      "nombre": "Geovanny Soto",
-      "hora": "12:12:33",
-      "fecha": "28/08/2025",
-      "categoria": "javascript",
-      "descripcion": "No le sirve un botón de inicio de sesión",
-      "sede": "La Capri",
-      "estado": "Sin resolver"
+      "estado": "Resuelta"
     },
     {
       "id": "0007",
@@ -516,6 +496,16 @@
       "descripcion": "",
       "sede": "La Capri",
       "estado": "Sin resolver"
+    },
+    {
+      "id": "35e8",
+      "nombre": "Ramsell Solano",
+      "hora": "16:19:24",
+      "fecha": "31/08/2025",
+      "categoria": "nodejs",
+      "descripcion": "no se conecta",
+      "sede": "Puntarenas",
+      "estado": "Sin resolver"
     }
   ],
   "consultasResueltas": [
@@ -596,6 +586,46 @@
       "fecha": "30/08/2025",
       "categoria": "jsonserver",
       "descripcion": "prueba json",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "9b85",
+      "nombre": "Ismael Marin",
+      "hora": "16:18:38",
+      "fecha": "31/08/2025",
+      "categoria": "react",
+      "descripcion": "prueba react",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0005",
+      "nombre": "Ismael Marin",
+      "hora": "10:03:11",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "Prueba 345",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0005",
+      "nombre": "Ismael Marin",
+      "hora": "10:03:11",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "Prueba 345",
+      "sede": "La Capri",
+      "estado": "Resuelta"
+    },
+    {
+      "id": "0006",
+      "nombre": "Geovanny Soto",
+      "hora": "12:12:33",
+      "fecha": "28/08/2025",
+      "categoria": "javascript",
+      "descripcion": "No le sirve un botón de inicio de sesión",
       "sede": "La Capri",
       "estado": "Resuelta"
     }

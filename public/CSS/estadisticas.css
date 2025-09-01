@@ -248,7 +248,7 @@ p {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
     main {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, auto);

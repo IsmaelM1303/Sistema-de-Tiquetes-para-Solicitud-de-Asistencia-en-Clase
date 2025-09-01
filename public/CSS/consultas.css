@@ -304,7 +304,7 @@ main h2 {
     background: var(--gris-claro);
     border-radius: 4px;
 }
-
+    
 *::-webkit-scrollbar-thumb {
     background-color: var(--turquesa);
     border-radius: 4px;
