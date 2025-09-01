@@ -1,23 +1,19 @@
-// servidor/generarPDF.js
-const PDFDocument = require('pdfkit-table')   // <- PDFDocumentWithTables
+const PDFDocument = require('pdfkit-table')
 const { buildEstadoTable, buildCategoriaTable } = require('./tableBuilder')
 const { fetchData } = require('./dataService')
 
 const generarReportePDF = async (res, { resumen, categorias }) => {
     try {
-        // 1) Trae datos
         const { consultas, consultasResueltas } = await fetchData()
         console.log('📊 Datos recibidos:', {
             consultas: consultas.length,
             resueltas: consultasResueltas.length
         })
 
-        // 2) Valida categorías
         if (!Array.isArray(categorias)) {
             throw new Error('"categorias" debe ser un array válido')
         }
 
-        // 3) Crea documento con la clase extendida
         const doc = new PDFDocument({ margin: 30 })
         const chunks = []
         doc.on('data', chunk => chunks.push(chunk))
@@ -32,8 +28,10 @@ const generarReportePDF = async (res, { resumen, categorias }) => {
                 .send(pdfBuffer)
         })
 
-        // 4) Tabla de estado
+        // Tabla de estado
         const estadoTable = buildEstadoTable(consultas, consultasResueltas)
+        console.log('🧾 Tabla de estado:', estadoTable.rows)
+
         doc.fontSize(16).text(estadoTable.title, { underline: true })
         await doc.table({
             headers: estadoTable.headers,
@@ -42,15 +40,16 @@ const generarReportePDF = async (res, { resumen, categorias }) => {
 
         doc.moveDown()
 
-        // 5) Tabla de categorías
+        // Tabla de categorías
         const categoriaTable = buildCategoriaTable(consultas, consultasResueltas, categorias)
+        console.log('🧾 Tabla de categorías:', categoriaTable.rows)
+
         doc.fontSize(16).text(categoriaTable.title, { underline: true })
         await doc.table({
             headers: categoriaTable.headers,
             rows: categoriaTable.rows
         })
 
-        // 6) Finaliza
         doc.end()
     } catch (err) {
         console.error('❌ Error al construir el PDF:', err)

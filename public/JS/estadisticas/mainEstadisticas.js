@@ -164,6 +164,7 @@ async function aplicarFiltros() {
     const consultas = await obtenerDatos("consultas")
     const consultasCompletas = await obtenerDatos("consultasResueltas")
     contenedorFiltro.innerHTML = ""
+    texto("contenedorFiltro", "Consultas por filtro")
 
     const nombreValor = filtroNombre.value.trim()
     const categoriaValor = categoriaConsulta.value.trim()

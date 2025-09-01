@@ -1,15 +1,17 @@
+const { parseFechaDDMMYYYY } = require('./utils/fecha')
+
 const buildEstadoTable = (consultas, consultasRevisadas) => {
     const total = consultas.length + consultasRevisadas.length
     const porRevisar = consultas.length
     const revisadasTotales = consultasRevisadas.length
 
-    const tresDiasAntes = new Date()
-    tresDiasAntes.setDate(tresDiasAntes.getDate() - 3)
+    const hoy = new Date()
+    const tresDiasAntes = new Date(hoy)
+    tresDiasAntes.setDate(hoy.getDate() - 3)
 
     const recientes = consultasRevisadas.filter(c => {
-        if (!c.fecha) return false
-        const fecha = new Date(c.fecha)
-        return fecha >= tresDiasAntes
+        const fecha = parseFechaDDMMYYYY(c.fecha)
+        return fecha && fecha >= tresDiasAntes && fecha <= hoy
     }).length
 
     return {
@@ -22,8 +24,6 @@ const buildEstadoTable = (consultas, consultasRevisadas) => {
             ['Consultas revisadas en los últimos 3 días', recientes]
         ]
     }
-
-
 }
 
 const buildCategoriaTable = (consultas, consultasResueltas, categorias) => {
@@ -34,8 +34,8 @@ const buildCategoriaTable = (consultas, consultasResueltas, categorias) => {
     categorias.forEach(cat => {
         rows.push([cat])
 
-        const revisadas = consultasResueltas.filter(c => c.categoria && c.categoria === cat).length
-        const porRevisar = consultas.filter(c => c.categoria && c.categoria === cat).length
+        const revisadas = consultasResueltas.filter(c => c.categoria === cat).length
+        const porRevisar = consultas.filter(c => c.categoria === cat).length
 
         rows.push(['Revisadas', revisadas, 'Por revisar', porRevisar])
     })
@@ -47,5 +47,4 @@ const buildCategoriaTable = (consultas, consultasResueltas, categorias) => {
     }
 }
 
-module.exports = { buildEstadoTable, buildCategoriaTable }
-
+module.exports = { buildEstadoTable, buildCategoriaTable }      
