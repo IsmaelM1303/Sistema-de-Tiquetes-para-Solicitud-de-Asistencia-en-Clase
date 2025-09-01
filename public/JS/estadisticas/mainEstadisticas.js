@@ -5,7 +5,6 @@ const filtroNombre = document.getElementById("filtroNombre")
 const categoriaConsulta = document.getElementById("categoriaConsulta")
 const filtroSede = document.getElementById("filtroSede")
 const filtroRevisadas = document.getElementById("filtroRevisadas")
-const mostrarDatos = document.getElementById("mostrarDatos")
 const nombreInput = document.getElementById("nombre")
 const apellidoInput = document.getElementById("apellido")
 const contrasenaInput = document.getElementById("contrasena")
@@ -54,6 +53,7 @@ function texto(id, contenido) {
 function crearMostrarConsulta(consulta, contenedor) {
     const contenedorTodas = document.getElementById(contenedor)
     const contenedorConsulta = document.createElement("div")
+
     const nombre = document.createElement("p")
     nombre.textContent = "Nombre del estudiante: " + (consulta.nombre || "")
     nombre.classList.add("dato")
@@ -78,53 +78,16 @@ function crearMostrarConsulta(consulta, contenedor) {
     locacion.textContent = "Sede: " + (consulta.sede || "")
     locacion.classList.add("dato")
 
-    // Botón para dar por resuelta la consulta
-    const botonRevisar = document.createElement("button")
-    botonRevisar.textContent = "Dar por resuelta"
-    botonRevisar.classList.add("dato", "boton-consulta")
-    botonRevisar.addEventListener("click", async () => {
-        // Inputs para editar
-        const inputNombre = document.createElement("input")
-        inputNombre.value = consulta.nombre || ""
-
-        const selectCategoria = document.createElement("select")
-        // Opciones de categoría (puedes mejorarlo según tus categorías)
-        const option = document.createElement("option")
-        option.value = consulta.categoria || ""
-        option.textContent = consulta.categoria || ""
-        selectCategoria.appendChild(option)
-
-        const textareaDescripcion = document.createElement("textarea")
-        textareaDescripcion.value = consulta.descripcion || ""
-
-        const inputSede = document.createElement("input")
-        inputSede.value = consulta.sede || ""
-
-        const datosActualizados = {
-            id: consulta.id,
-            nombre: inputNombre.value,
-            hora: consulta.hora,
-            fecha: consulta.fecha,
-            categoria: selectCategoria.value,
-            descripcion: textareaDescripcion.value,
-            sede: inputSede.value,
-            estado: "Resuelta"
-        }
-
-        await updateData("consultas", consulta.id, datosActualizados)
-        actualizarLista()
-    })
-
     contenedorConsulta.appendChild(nombre)
     contenedorConsulta.appendChild(hora)
     contenedorConsulta.appendChild(fecha)
     contenedorConsulta.appendChild(categoria)
     contenedorConsulta.appendChild(descripcion)
     contenedorConsulta.appendChild(locacion)
-    contenedorConsulta.appendChild(botonRevisar)
-
     contenedorTodas.appendChild(contenedorConsulta)
 }
+
+
 
 //Esto es para que las consultas que se impriman solo lo hagan bajo el estandar esperado
 export async function actualizarLista() {
@@ -136,7 +99,6 @@ export async function actualizarLista() {
         contenedorTodas.innerHTML = ""
         contenedorCompletas.innerHTML = ""
         texto("contenedorTodas", "Todas las consultas")
-        texto("contenedorFiltro", "Consultas por filtro")
         texto("contenedorCompletas", "Consultas resueltas")
         consultas.forEach(consulta => {
             crearMostrarConsulta(consulta, "contenedorTodas")
