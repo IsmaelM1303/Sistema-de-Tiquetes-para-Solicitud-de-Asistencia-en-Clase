@@ -1,3 +1,4 @@
+//Esto construye las tablas para los PDF
 const { parseFechaDDMMYYYY } = require('./utils/fecha')
 
 const buildEstadoTable = (consultas, consultasRevisadas) => {

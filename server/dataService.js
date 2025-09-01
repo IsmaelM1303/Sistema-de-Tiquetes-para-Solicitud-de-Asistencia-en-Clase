@@ -1,3 +1,4 @@
+//esto hace que pueda obtener la información de mi db.json para generar el PDF
 const axios = require('axios')
 const BASE_URL = 'http://localhost:3001'
 

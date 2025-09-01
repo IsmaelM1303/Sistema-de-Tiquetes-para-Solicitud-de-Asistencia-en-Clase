@@ -328,8 +328,6 @@ async function mostrarEstadisticas() {
 
 }
 
-
-
 //Esto es para registrar usuarios
 async function registrarUsuario(letra) {
     const nombreCompleto = nombreInput.value.trim() + " " + apellidoInput.value.trim()

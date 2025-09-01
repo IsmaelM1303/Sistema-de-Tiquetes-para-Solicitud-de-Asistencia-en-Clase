@@ -1,3 +1,4 @@
+//Esto genera el PDF
 const PDFDocument = require('pdfkit-table')
 const { buildEstadoTable, buildCategoriaTable } = require('./tableBuilder')
 const { fetchData } = require('./dataService')
